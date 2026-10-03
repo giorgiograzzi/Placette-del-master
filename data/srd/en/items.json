@@ -1,0 +1,1056 @@
+{
+ "kind": "items",
+ "entries": [
+  {
+   "id": "acid",
+   "name": "Acid",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 2500,
+   "origin": "srd",
+   "description": "Instead of one attack, throw a vial at a creature or object within 20 ft: Dexterity save (DC 8 + Dex + proficiency) or take Acid damage."
+  },
+  {
+   "id": "alchemists_fire",
+   "name": "Alchemist's Fire",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 5000,
+   "origin": "srd",
+   "description": "Instead of one attack, throw a flask within 20 ft: Dexterity save (DC 8 + Dex + proficiency) or take 1d4 Fire damage and start burning."
+  },
+  {
+   "id": "antitoxin",
+   "name": "Antitoxin",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 5000,
+   "origin": "srd",
+   "description": "As a Bonus Action, drink it to gain Advantage on saving throws to avoid or end the Poisoned condition."
+  },
+  {
+   "id": "backpack",
+   "name": "Backpack",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "ball_bearings",
+   "name": "Ball Bearings",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 100,
+   "origin": "srd",
+   "description": "Use action to spill them over a 10-ft square within 10 ft: a creature must pass a DC 10 Dexterity save or fall Prone."
+  },
+  {
+   "id": "barrel",
+   "name": "Barrel",
+   "category": "adventuring_gear",
+   "weight": 70,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "basket",
+   "name": "Basket",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 40,
+   "origin": "srd"
+  },
+  {
+   "id": "bedroll",
+   "name": "Bedroll",
+   "category": "adventuring_gear",
+   "weight": 7,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "bell",
+   "name": "Bell",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 100,
+   "origin": "srd",
+   "description": "Rung with the Utilize action, it can be heard up to 60 ft away."
+  },
+  {
+   "id": "blanket",
+   "name": "Blanket",
+   "category": "adventuring_gear",
+   "weight": 3,
+   "cost": 50,
+   "origin": "srd"
+  },
+  {
+   "id": "block_and_tackle",
+   "name": "Block and Tackle",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 100,
+   "origin": "srd",
+   "description": "Lets you lift up to four times the weight you normally could."
+  },
+  {
+   "id": "book",
+   "name": "Book",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 2500,
+   "origin": "srd"
+  },
+  {
+   "id": "glass_bottle",
+   "name": "Glass Bottle",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "bucket",
+   "name": "Bucket",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 5,
+   "origin": "srd"
+  },
+  {
+   "id": "burglars_pack",
+   "name": "Burglar's Pack",
+   "category": "pack",
+   "weight": 42,
+   "cost": 1600,
+   "contents": [
+    {
+     "item": "backpack",
+     "qty": 1
+    },
+    {
+     "item": "ball_bearings",
+     "qty": 1
+    },
+    {
+     "item": "bell",
+     "qty": 1
+    },
+    {
+     "item": "candle",
+     "qty": 10
+    },
+    {
+     "item": "crowbar",
+     "qty": 1
+    },
+    {
+     "item": "hooded_lantern",
+     "qty": 1
+    },
+    {
+     "item": "oil",
+     "qty": 7
+    },
+    {
+     "item": "rations",
+     "qty": 5
+    },
+    {
+     "item": "rope",
+     "qty": 1
+    },
+    {
+     "item": "tinderbox",
+     "qty": 1
+    },
+    {
+     "item": "waterskin",
+     "qty": 1
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "caltrops",
+   "name": "Caltrops",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 100,
+   "origin": "srd",
+   "description": "Use action to scatter them over a 5-ft square within 5 ft: a creature entering for the first time on a turn must pass a DC 15 Dexterity save or take 1 Piercing damage and have Speed 0 until its next turn."
+  },
+  {
+   "id": "candle",
+   "name": "Candle",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 1,
+   "origin": "srd"
+  },
+  {
+   "id": "crossbow_bolt_case",
+   "name": "Crossbow Bolt Case",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "map_or_scroll_case",
+   "name": "Map or Scroll Case",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "chain",
+   "name": "Chain",
+   "category": "adventuring_gear",
+   "weight": 10,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "chest",
+   "name": "Chest",
+   "category": "adventuring_gear",
+   "weight": 25,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "climbers_kit",
+   "name": "Climber's Kit",
+   "category": "adventuring_gear",
+   "weight": 12,
+   "cost": 2500,
+   "origin": "srd",
+   "description": "Use action to set an anchor: you can't fall or move more than 25 ft from the anchor point until you undo it (Bonus Action)."
+  },
+  {
+   "id": "fine_clothes",
+   "name": "Fine Clothes",
+   "category": "adventuring_gear",
+   "weight": 6,
+   "cost": 1500,
+   "origin": "srd"
+  },
+  {
+   "id": "travelers_clothes",
+   "name": "Traveler's Clothes",
+   "category": "adventuring_gear",
+   "weight": 4,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "component_pouch",
+   "name": "Component Pouch",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 2500,
+   "origin": "srd",
+   "description": "Waterproof, it holds all the loose material components for your spells (those without a cost)."
+  },
+  {
+   "id": "costume",
+   "name": "Costume",
+   "category": "adventuring_gear",
+   "weight": 4,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "crowbar",
+   "name": "Crowbar",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "diplomats_pack",
+   "name": "Diplomat's Pack",
+   "category": "pack",
+   "weight": 39,
+   "cost": 3900,
+   "contents": [
+    {
+     "item": "chest",
+     "qty": 1
+    },
+    {
+     "item": "fine_clothes",
+     "qty": 1
+    },
+    {
+     "item": "ink",
+     "qty": 1
+    },
+    {
+     "item": "ink_pen",
+     "qty": 5
+    },
+    {
+     "item": "lamp",
+     "qty": 1
+    },
+    {
+     "item": "map_or_scroll_case",
+     "qty": 2
+    },
+    {
+     "item": "oil",
+     "qty": 4
+    },
+    {
+     "item": "paper",
+     "qty": 5
+    },
+    {
+     "item": "parchment",
+     "qty": 5
+    },
+    {
+     "item": "perfume",
+     "qty": 1
+    },
+    {
+     "item": "tinderbox",
+     "qty": 1
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "dungeoneers_pack",
+   "name": "Dungeoneer's Pack",
+   "category": "pack",
+   "weight": 55,
+   "cost": 1200,
+   "contents": [
+    {
+     "item": "backpack",
+     "qty": 1
+    },
+    {
+     "item": "caltrops",
+     "qty": 1
+    },
+    {
+     "item": "crowbar",
+     "qty": 1
+    },
+    {
+     "item": "oil",
+     "qty": 2
+    },
+    {
+     "item": "rations",
+     "qty": 10
+    },
+    {
+     "item": "rope",
+     "qty": 1
+    },
+    {
+     "item": "tinderbox",
+     "qty": 1
+    },
+    {
+     "item": "torch",
+     "qty": 10
+    },
+    {
+     "item": "waterskin",
+     "qty": 1
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "entertainers_pack",
+   "name": "Entertainer's Pack",
+   "category": "pack",
+   "weight": 58.5,
+   "cost": 4000,
+   "contents": [
+    {
+     "item": "backpack",
+     "qty": 1
+    },
+    {
+     "item": "bedroll",
+     "qty": 1
+    },
+    {
+     "item": "bell",
+     "qty": 1
+    },
+    {
+     "item": "bullseye_lantern",
+     "qty": 1
+    },
+    {
+     "item": "costume",
+     "qty": 3
+    },
+    {
+     "item": "mirror",
+     "qty": 1
+    },
+    {
+     "item": "oil",
+     "qty": 8
+    },
+    {
+     "item": "rations",
+     "qty": 9
+    },
+    {
+     "item": "waterskin",
+     "qty": 1
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "explorers_pack",
+   "name": "Explorer's Pack",
+   "category": "pack",
+   "weight": 55,
+   "cost": 1000,
+   "contents": [
+    {
+     "item": "backpack",
+     "qty": 1
+    },
+    {
+     "item": "bedroll",
+     "qty": 1
+    },
+    {
+     "item": "oil",
+     "qty": 2
+    },
+    {
+     "item": "rations",
+     "qty": 10
+    },
+    {
+     "item": "rope",
+     "qty": 1
+    },
+    {
+     "item": "tinderbox",
+     "qty": 1
+    },
+    {
+     "item": "torch",
+     "qty": 10
+    },
+    {
+     "item": "waterskin",
+     "qty": 1
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "flask",
+   "name": "Flask",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 2,
+   "origin": "srd"
+  },
+  {
+   "id": "grappling_hook",
+   "name": "Grappling Hook",
+   "category": "adventuring_gear",
+   "weight": 4,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "healers_kit",
+   "name": "Healer's Kit",
+   "category": "adventuring_gear",
+   "weight": 3,
+   "cost": 500,
+   "origin": "srd",
+   "description": "Has ten uses. As a Utilize action, spend one to stabilize an Unconscious creature at 0 Hit Points without a Wisdom (Medicine) check."
+  },
+  {
+   "id": "holy_water",
+   "name": "Holy Water",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 2500,
+   "origin": "srd",
+   "description": "Instead of one attack, throw it within 20 ft: Dexterity save (DC 8 + Dex + proficiency) or take Radiant damage if it is a Fiend or an Undead."
+  },
+  {
+   "id": "hunting_trap",
+   "name": "Hunting Trap",
+   "category": "adventuring_gear",
+   "weight": 25,
+   "cost": 500,
+   "origin": "srd",
+   "description": "Set it with the Utilize action: a creature entering must pass a DC 13 Dexterity save or take 1d4 Piercing damage and have Speed 0 until freed."
+  },
+  {
+   "id": "ink",
+   "name": "Ink",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 1000,
+   "origin": "srd"
+  },
+  {
+   "id": "ink_pen",
+   "name": "Ink Pen",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 2,
+   "origin": "srd"
+  },
+  {
+   "id": "jug",
+   "name": "Jug",
+   "category": "adventuring_gear",
+   "weight": 4,
+   "cost": 2,
+   "origin": "srd"
+  },
+  {
+   "id": "ladder",
+   "name": "Ladder",
+   "category": "adventuring_gear",
+   "weight": 25,
+   "cost": 10,
+   "origin": "srd",
+   "description": "10 feet tall."
+  },
+  {
+   "id": "lamp",
+   "name": "Lamp",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 50,
+   "origin": "srd",
+   "description": "Burns oil: Bright Light in a 15-ft radius and Dim Light for another 30 ft."
+  },
+  {
+   "id": "bullseye_lantern",
+   "name": "Bullseye Lantern",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 1000,
+   "origin": "srd",
+   "description": "Burns oil: Bright Light in a 60-ft Cone and Dim Light for another 60 ft."
+  },
+  {
+   "id": "hooded_lantern",
+   "name": "Hooded Lantern",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 500,
+   "origin": "srd",
+   "description": "Burns oil: Bright Light in a 30-ft radius and Dim Light for another 30 ft; as a Bonus Action you can lower the hood for Dim Light only."
+  },
+  {
+   "id": "lock",
+   "name": "Lock",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 1000,
+   "origin": "srd",
+   "description": "Opens with its key or a DC 15 Dexterity (Sleight of Hand) check."
+  },
+  {
+   "id": "magnifying_glass",
+   "name": "Magnifying Glass",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 10000,
+   "origin": "srd"
+  },
+  {
+   "id": "manacles",
+   "name": "Manacles",
+   "category": "adventuring_gear",
+   "weight": 6,
+   "cost": 200,
+   "origin": "srd",
+   "description": "Use action (DC 13 Dexterity (Sleight of Hand) check) to bind a Small or Medium creature within 5 ft that is Grappled, Incapacitated, or Restrained."
+  },
+  {
+   "id": "map",
+   "name": "Map",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "mirror",
+   "name": "Mirror",
+   "category": "adventuring_gear",
+   "weight": 0.5,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "net",
+   "name": "Net",
+   "category": "adventuring_gear",
+   "weight": 3,
+   "cost": 100,
+   "origin": "srd",
+   "description": "Throw it within 15 ft: a target that fails the Dexterity save is Restrained; it escapes with a DC 10 Strength check or by destroying the net."
+  },
+  {
+   "id": "oil",
+   "name": "Oil",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 10,
+   "origin": "srd",
+   "description": "Thrown at a target it coats it: extra Fire damage if it takes Fire damage. Poured over a 5-ft square and lit, it burns for 2 rounds, dealing 5 Fire damage to creatures entering or ending their turn there."
+  },
+  {
+   "id": "paper",
+   "name": "Paper",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 20,
+   "origin": "srd"
+  },
+  {
+   "id": "parchment",
+   "name": "Parchment",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 10,
+   "origin": "srd"
+  },
+  {
+   "id": "perfume",
+   "name": "Perfume",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "basic_poison",
+   "name": "Basic Poison",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 10000,
+   "origin": "srd",
+   "description": "As a Bonus Action, coat a weapon or ammunition: its next hit deals an extra 1d4 Poison damage."
+  },
+  {
+   "id": "pole",
+   "name": "Pole",
+   "category": "adventuring_gear",
+   "weight": 7,
+   "cost": 5,
+   "origin": "srd",
+   "description": "10 feet long."
+  },
+  {
+   "id": "iron_pot",
+   "name": "Iron Pot",
+   "category": "adventuring_gear",
+   "weight": 10,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "potion_of_healing",
+   "name": "Potion of Healing",
+   "category": "adventuring_gear",
+   "weight": 0.5,
+   "cost": 5000,
+   "origin": "srd",
+   "description": "Magic item. As a Bonus Action, drink it (or give it to a creature within 5 ft) to regain 2d4 + 2 Hit Points."
+  },
+  {
+   "id": "pouch",
+   "name": "Pouch",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 50,
+   "origin": "srd"
+  },
+  {
+   "id": "priests_pack",
+   "name": "Priest's Pack",
+   "category": "pack",
+   "weight": 29,
+   "cost": 3300,
+   "contents": [
+    {
+     "item": "backpack",
+     "qty": 1
+    },
+    {
+     "item": "blanket",
+     "qty": 1
+    },
+    {
+     "item": "holy_water",
+     "qty": 1
+    },
+    {
+     "item": "lamp",
+     "qty": 1
+    },
+    {
+     "item": "rations",
+     "qty": 7
+    },
+    {
+     "item": "robe",
+     "qty": 1
+    },
+    {
+     "item": "tinderbox",
+     "qty": 1
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "quiver",
+   "name": "Quiver",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "portable_ram",
+   "name": "Portable Ram",
+   "category": "adventuring_gear",
+   "weight": 35,
+   "cost": 400,
+   "origin": "srd",
+   "description": "Used to break down doors: gives a +4 bonus to the Strength check."
+  },
+  {
+   "id": "rations",
+   "name": "Rations",
+   "category": "adventuring_gear",
+   "weight": 2,
+   "cost": 50,
+   "origin": "srd"
+  },
+  {
+   "id": "robe",
+   "name": "Robe",
+   "category": "adventuring_gear",
+   "weight": 4,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "rope",
+   "name": "Rope",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 100,
+   "origin": "srd",
+   "description": "Use action to tie a knot (DC 10 Dexterity (Sleight of Hand) check); it can be burst with a DC 20 Strength (Athletics) check."
+  },
+  {
+   "id": "sack",
+   "name": "Sack",
+   "category": "adventuring_gear",
+   "weight": 0.5,
+   "cost": 1,
+   "origin": "srd"
+  },
+  {
+   "id": "scholars_pack",
+   "name": "Scholar's Pack",
+   "category": "pack",
+   "weight": 22,
+   "cost": 4000,
+   "contents": [
+    {
+     "item": "backpack",
+     "qty": 1
+    },
+    {
+     "item": "book",
+     "qty": 1
+    },
+    {
+     "item": "ink",
+     "qty": 1
+    },
+    {
+     "item": "ink_pen",
+     "qty": 1
+    },
+    {
+     "item": "lamp",
+     "qty": 1
+    },
+    {
+     "item": "oil",
+     "qty": 10
+    },
+    {
+     "item": "parchment",
+     "qty": 10
+    },
+    {
+     "item": "tinderbox",
+     "qty": 1
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "shovel",
+   "name": "Shovel",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 200,
+   "origin": "srd"
+  },
+  {
+   "id": "signal_whistle",
+   "name": "Signal Whistle",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 5,
+   "origin": "srd"
+  },
+  {
+   "id": "spell_scroll_cantrip",
+   "name": "Spell Scroll (Cantrip)",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 3000,
+   "origin": "srd"
+  },
+  {
+   "id": "spell_scroll_level_1",
+   "name": "Spell Scroll (Level 1)",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 5000,
+   "origin": "srd"
+  },
+  {
+   "id": "iron_spikes",
+   "name": "Iron Spikes",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "spyglass",
+   "name": "Spyglass",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 100000,
+   "origin": "srd",
+   "description": "Objects viewed through it appear twice as large."
+  },
+  {
+   "id": "string",
+   "name": "String",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 10,
+   "origin": "srd"
+  },
+  {
+   "id": "tent",
+   "name": "Tent",
+   "category": "adventuring_gear",
+   "weight": 20,
+   "cost": 200,
+   "origin": "srd",
+   "description": "Sleeps up to two Small or Medium creatures."
+  },
+  {
+   "id": "tinderbox",
+   "name": "Tinderbox",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 50,
+   "origin": "srd"
+  },
+  {
+   "id": "torch",
+   "name": "Torch",
+   "category": "adventuring_gear",
+   "weight": 1,
+   "cost": 1,
+   "origin": "srd",
+   "description": "Burns for 1 hour: Bright Light in a 20-ft radius and Dim Light for another 20 ft. Used as a simple melee weapon it deals 1 Fire damage."
+  },
+  {
+   "id": "vial",
+   "name": "Vial",
+   "category": "adventuring_gear",
+   "weight": 0,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "waterskin",
+   "name": "Waterskin",
+   "category": "adventuring_gear",
+   "weight": 5,
+   "cost": 20,
+   "origin": "srd"
+  },
+  {
+   "id": "arrows",
+   "name": "Arrows",
+   "category": "ammunition",
+   "amount": 20,
+   "weight": 1,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "bolts",
+   "name": "Bolts",
+   "category": "ammunition",
+   "amount": 20,
+   "weight": 1.5,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "bullets_firearm",
+   "name": "Firearm Bullets",
+   "category": "ammunition",
+   "amount": 10,
+   "weight": 2,
+   "cost": 300,
+   "origin": "srd"
+  },
+  {
+   "id": "bullets_sling",
+   "name": "Sling Bullets",
+   "category": "ammunition",
+   "amount": 20,
+   "weight": 1.5,
+   "cost": 4,
+   "origin": "srd"
+  },
+  {
+   "id": "needles",
+   "name": "Needles",
+   "category": "ammunition",
+   "amount": 50,
+   "weight": 1,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "arcane_focus_crystal",
+   "name": "Arcane Focus (Crystal)",
+   "category": "arcane_focus",
+   "weight": 1,
+   "cost": 1000,
+   "origin": "srd"
+  },
+  {
+   "id": "arcane_focus_orb",
+   "name": "Arcane Focus (Orb)",
+   "category": "arcane_focus",
+   "weight": 3,
+   "cost": 2000,
+   "origin": "srd"
+  },
+  {
+   "id": "arcane_focus_rod",
+   "name": "Arcane Focus (Rod)",
+   "category": "arcane_focus",
+   "weight": 2,
+   "cost": 1000,
+   "origin": "srd"
+  },
+  {
+   "id": "arcane_focus_staff",
+   "name": "Arcane Focus (Staff)",
+   "category": "arcane_focus",
+   "weight": 4,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "arcane_focus_wand",
+   "name": "Arcane Focus (Wand)",
+   "category": "arcane_focus",
+   "weight": 1,
+   "cost": 1000,
+   "origin": "srd"
+  },
+  {
+   "id": "druidic_focus_sprig_of_mistletoe",
+   "name": "Druidic Focus (Sprig of Mistletoe)",
+   "category": "druidic_focus",
+   "weight": 0,
+   "cost": 100,
+   "origin": "srd"
+  },
+  {
+   "id": "druidic_focus_wooden_staff",
+   "name": "Druidic Focus (Wooden Staff)",
+   "category": "druidic_focus",
+   "weight": 4,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "druidic_focus_yew_wand",
+   "name": "Druidic Focus (Yew Wand)",
+   "category": "druidic_focus",
+   "weight": 1,
+   "cost": 1000,
+   "origin": "srd"
+  },
+  {
+   "id": "holy_symbol_amulet",
+   "name": "Holy Symbol (Amulet)",
+   "category": "holy_symbol",
+   "weight": 1,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "holy_symbol_emblem",
+   "name": "Holy Symbol (Emblem)",
+   "category": "holy_symbol",
+   "weight": 0,
+   "cost": 500,
+   "origin": "srd"
+  },
+  {
+   "id": "holy_symbol_reliquary",
+   "name": "Holy Symbol (Reliquary)",
+   "category": "holy_symbol",
+   "weight": 2,
+   "cost": 500,
+   "origin": "srd"
+  }
+ ]
+}

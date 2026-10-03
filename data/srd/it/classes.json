@@ -1,0 +1,7417 @@
+{
+ "kind": "classes",
+ "entries": [
+  {
+   "id": "barbarian",
+   "name": "Barbaro",
+   "description": "Guerriero feroce che attinge a un'ira primordiale: resistenza ai danni, forza bruta e attacchi devastanti.",
+   "hitDie": 12,
+   "primaryAbility": [
+    "str"
+   ],
+   "saves": [
+    "str",
+    "con"
+   ],
+   "multiclassRequirement": "ability:str>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "animal_handling",
+     "athletics",
+     "intimidation",
+     "nature",
+     "perception",
+     "survival"
+    ]
+   },
+   "armorTraining": [
+    "light",
+    "medium",
+    "shield"
+   ],
+   "weaponProficiency": [
+    "simple",
+    "martial"
+   ],
+   "caster": "none",
+   "multiclass": {
+    "weapons": [
+     "martial"
+    ],
+    "armor": [
+     "shield"
+    ],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "greataxe",
+       "qty": 1
+      },
+      {
+       "item": "handaxe",
+       "qty": 4
+      },
+      {
+       "item": "explorers_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 15
+    },
+    "B": {
+     "items": [],
+     "gp": 75
+    }
+   },
+   "choices": [
+    {
+     "id": "barbarian_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "animal_handling",
+       "name": "Addestrare animali",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "animal_handling"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "athletics",
+       "name": "Atletica",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "athletics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intimidation",
+       "name": "Intimidire",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "intimidation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nature",
+       "name": "Natura",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "nature"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perception",
+       "name": "Percezione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "perception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "survival",
+       "name": "Sopravvivenza",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "survival"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "rage",
+     "name": "Ira",
+     "description": "Come azione bonus (senza armatura pesante) entri in ira; gli usi sono nella colonna Ire (ne recuperi 1 con un riposo breve, tutti con uno lungo). In ira: resistenza ai danni contundenti, perforanti e taglienti; bonus ai danni degli attacchi basati su Forza (colonna Danni dell'ira); Vantaggio alle prove e ai tiri salvezza su Forza; niente concentrazione né incantesimi. L'ira dura fino alla fine del tuo prossimo turno e si prolunga se attacchi, costringi un nemico a un tiro salvezza o usi un'azione bonus (massimo 10 minuti); finisce se indossi un'armatura pesante o sei incapacitato.",
+     "effects": [
+      {
+       "op": "resistance",
+       "types": [
+        "bludgeoning",
+        "piercing",
+        "slashing"
+       ],
+       "when": "active:rage"
+      },
+      {
+       "op": "saveAdvantage",
+       "abilities": [
+        "str"
+       ],
+       "when": "active:rage"
+      },
+      {
+       "op": "restriction",
+       "forbids": "spellcasting",
+       "reason": "Ira",
+       "when": "active:rage"
+      },
+      {
+       "op": "damageBonus",
+       "value": 2,
+       "attackType": "any",
+       "when": "classLevel:barbarian>=1 && active:rage && attackAbility:str"
+      },
+      {
+       "op": "damageBonus",
+       "value": 1,
+       "attackType": "any",
+       "when": "classLevel:barbarian>=9 && active:rage && attackAbility:str"
+      },
+      {
+       "op": "damageBonus",
+       "value": 1,
+       "attackType": "any",
+       "when": "classLevel:barbarian>=16 && active:rage && attackAbility:str"
+      }
+     ],
+     "usage": {
+      "uses": {
+       "table": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6
+       ]
+      },
+      "recharge": "long_rest",
+      "partialShortRest": 1
+     },
+     "activation": {
+      "resource": "rage",
+      "requires": "!wearingArmor:heavy",
+      "duration": "10 minuti"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "unarmored_defense",
+     "name": "Difesa senza armatura",
+     "description": "Senza armatura la CA base è 10 + Des + Cos; puoi usare uno scudo.",
+     "effects": [
+      {
+       "op": "acFormula",
+       "formula": "10 + mod:dex + mod:con",
+       "shieldAllowed": true,
+       "when": "wearingArmor:none"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "weapon_mastery",
+     "name": "Padronanza d'armi",
+     "description": "Puoi usare le proprietà di padronanza di 2 tipi di armi da mischia semplici o da guerra (altri con i livelli, colonna Padronanza d'armi); a ogni riposo lungo puoi cambiarne uno.",
+     "choices": [
+      {
+       "id": "barbarian_weapon_mastery",
+       "label": "Padronanza d'armi",
+       "countFrom": "weapon_mastery",
+       "source": "weaponMastery",
+       "weaponFilter": {
+        "kind": "melee"
+       }
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "danger_sense",
+     "name": "Percezione del pericolo",
+     "description": "Vantaggio ai tiri salvezza su Destrezza, a meno che tu sia incapacitato.",
+     "effects": [
+      {
+       "op": "saveAdvantage",
+       "abilities": [
+        "dex"
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "reckless_attack",
+     "name": "Attacco irruento",
+     "description": "Con il primo attacco del tuo turno puoi attaccare con irruenza: Vantaggio ai tiri per colpire con Forza fino all'inizio del tuo prossimo turno, ma anche i tiri contro di te hanno Vantaggio.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "barbarian_subclass",
+     "name": "Sottoclasse del barbaro",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "primal_knowledge",
+     "name": "Conoscenza primordiale",
+     "description": "Competenza in un'altra abilità della lista del barbaro. In ira puoi fare prove di Acrobazia, Intimidire, Percezione, Furtività o Sopravvivenza usando Forza.",
+     "choices": [
+      {
+       "id": "barbarian_primal_knowledge",
+       "label": "Competenza aggiuntiva",
+       "count": 1,
+       "options": [
+        {
+         "id": "animal_handling",
+         "name": "Addestrare animali",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "animal_handling"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "athletics",
+         "name": "Atletica",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "athletics"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "intimidation",
+         "name": "Intimidire",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "intimidation"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "nature",
+         "name": "Natura",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "nature"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "perception",
+         "name": "Percezione",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "perception"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "survival",
+         "name": "Sopravvivenza",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "survival"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_barbarian_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_barbarian_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_barbarian_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_barbarian_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "extra_attack",
+     "name": "Attacco extra",
+     "description": "Attacchi due volte con l'azione Attacco.",
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "fast_movement",
+     "name": "Movimento veloce",
+     "description": "Velocità +3 m (10 piedi) se non indossi un'armatura pesante.",
+     "effects": [
+      {
+       "op": "speedBonus",
+       "value": 10,
+       "when": "!wearingArmor:heavy"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "feral_instinct",
+     "name": "Istinto ferino",
+     "description": "Vantaggio ai tiri per l'iniziativa.",
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "instinctive_pounce",
+     "name": "Balzo istintivo",
+     "description": "Come parte dell'azione bonus per entrare in ira puoi muoverti fino a metà della tua velocità.",
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "brutal_strike",
+     "name": "Colpo brutale",
+     "description": "Se usi Attacco irruento puoi rinunciare al Vantaggio di un attacco basato su Forza: se colpisce infligge 1d10 danni extra e un effetto: Colpo violento (spingi il bersaglio di 4,5 m e ti muovi fino a metà velocità verso di lui senza attacchi di opportunità) o Colpo spaccaossa (velocità del bersaglio −4,5 m fino al tuo prossimo turno).",
+     "origin": "srd"
+    },
+    {
+     "level": 11,
+     "id": "relentless_rage",
+     "name": "Ira implacabile",
+     "description": "In ira, se scendi a 0 PF senza morire sul colpo, fai un tiro salvezza su Costituzione (CD 10): se lo superi, i PF diventano il doppio del tuo livello da barbaro. La CD sale di 5 a ogni uso dopo il primo e torna a 10 con un riposo breve o lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 13,
+     "id": "improved_brutal_strike",
+     "name": "Colpo brutale migliorato",
+     "description": "Nuovi effetti per Colpo brutale: Colpo sbalorditivo (il bersaglio ha Svantaggio al prossimo tiro salvezza e niente attacchi di opportunità fino al tuo prossimo turno) e Colpo di scissione (+5 al prossimo tiro per colpire di un'altra creatura contro il bersaglio).",
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "persistent_rage",
+     "name": "Ira persistente",
+     "description": "Quando tiri l'iniziativa recuperi tutti gli usi dell'ira (una volta per riposo lungo). L'ira dura 10 minuti senza doverla prolungare e finisce solo se sei privo di sensi o indossi un'armatura pesante.",
+     "origin": "srd"
+    },
+    {
+     "level": 17,
+     "id": "improved_brutal_strike_17",
+     "name": "Colpo brutale migliorato",
+     "description": "I danni extra di Colpo brutale salgono a 2d10 e puoi usare due effetti diversi.",
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "indomitable_might",
+     "name": "Potenza indomabile",
+     "description": "Se il totale di una prova o di un tiro salvezza su Forza è inferiore al tuo punteggio di Forza, puoi usare il punteggio al suo posto.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono dell'offensiva irresistibile.",
+     "choices": [
+      {
+       "id": "epic_boon_barbarian",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "primal_champion",
+     "name": "Campione primordiale",
+     "description": "Forza e Costituzione +4 (massimo 25).",
+     "effects": [
+      {
+       "op": "abilityScoreIncrease",
+       "abilities": [
+        "str",
+        "con"
+       ],
+       "amount": 4,
+       "cap": 25
+      }
+     ],
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "rages": [
+     2,
+     2,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     5,
+     5,
+     5,
+     5,
+     5,
+     6,
+     6,
+     6,
+     6
+    ],
+    "rage_damage": [
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "weapon_mastery": [
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "bard",
+   "name": "Bardo",
+   "description": "Artista incantatore: Ispirazione bardica, maestria nelle abilità e incantesimi dalle liste di più classi.",
+   "hitDie": 8,
+   "primaryAbility": [
+    "cha"
+   ],
+   "saves": [
+    "dex",
+    "cha"
+   ],
+   "multiclassRequirement": "ability:cha>=13",
+   "skillChoices": {
+    "count": 3,
+    "from": "any"
+   },
+   "armorTraining": [
+    "light"
+   ],
+   "weaponProficiency": [
+    "simple"
+   ],
+   "caster": "full",
+   "spellAbility": "cha",
+   "spellList": "bard",
+   "spellSlots": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     1,
+     1
+    ]
+   ],
+   "multiclass": {
+    "weapons": [],
+    "armor": [
+     "light"
+    ],
+    "skills": 1,
+    "toolChoices": 1,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "leather_armor",
+       "qty": 1
+      },
+      {
+       "item": "dagger",
+       "qty": 2
+      },
+      {
+       "item": "$instrument",
+       "qty": 1
+      },
+      {
+       "item": "entertainers_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 19
+    },
+    "B": {
+     "items": [],
+     "gp": 90
+    }
+   },
+   "choices": [
+    {
+     "id": "bard_skills",
+     "label": "Abilità di classe",
+     "count": 3,
+     "source": "skills"
+    },
+    {
+     "id": "bard_tools",
+     "label": "Strumento",
+     "count": 3,
+     "source": "tools:musical"
+    },
+    {
+     "id": "bard_cantrips",
+     "label": "Trucchetti",
+     "count": 1,
+     "countFrom": "cantrips",
+     "source": "cantrips:bard"
+    },
+    {
+     "id": "bard_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:bard"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "bardic_inspiration",
+     "name": "Ispirazione bardica",
+     "description": "Come azione bonus dai a una creatura entro 18 m che ti vede o ti sente un dado di Ispirazione bardica (colonna Dado bardico): entro 1 ora, quando fallisce una prova con d20, può tirarlo e aggiungerlo al risultato. Una creatura ne ha uno alla volta. Usi pari al modificatore di Carisma (minimo 1) per riposo lungo.",
+     "usage": {
+      "uses": "max(1, mod:cha)",
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "spellcasting",
+     "name": "Incantesimi",
+     "description": "Lanci incantesimi da bardo con Carisma, usando uno strumento musicale come focus. Conosci 2 trucchetti (altri al 4° e 10°) e prepari incantesimi (colonna Incantesimi preparati) dalla lista del bardo, di un livello per cui hai slot; ad ogni livello da bardo puoi sostituirne uno. Gli slot tornano con un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "expertise",
+     "name": "Maestria",
+     "description": "Maestria in due abilità in cui hai competenza (consigliate Intrattenere e Persuasione). Al 9° livello altre due.",
+     "choices": [
+      {
+       "id": "bard_expertise_2",
+       "label": "Maestria",
+       "count": 2,
+       "source": "expertise"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "jack_of_all_trades",
+     "name": "Factotum",
+     "description": "Aggiungi metà del bonus di competenza (per difetto) alle prove di caratteristica in cui non sei già competente.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "bard_subclass",
+     "name": "Sottoclasse del bardo",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_bard_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_bard_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_bard_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_bard_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "font_of_inspiration",
+     "name": "Fonte di ispirazione",
+     "description": "Recuperi tutti gli usi di Ispirazione bardica con un riposo breve o lungo; inoltre puoi spendere uno slot incantesimo (senza azione) per recuperarne uno.",
+     "usage": {
+      "uses": "max(1, mod:cha)",
+      "recharge": "short_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "countercharm",
+     "name": "Controfascino",
+     "description": "Con la reazione, quando tu o una creatura entro 9 m fallite un tiro salvezza contro un effetto che applica affascinato o spaventato, il tiro si ripete con Vantaggio.",
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "expertise_9",
+     "name": "Maestria",
+     "description": "Maestria in altre due abilità in cui hai competenza.",
+     "choices": [
+      {
+       "id": "bard_expertise_9",
+       "label": "Maestria",
+       "count": 2,
+       "source": "expertise"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "magical_secrets",
+     "name": "Segreti magici",
+     "description": "Quando aumenta il numero di incantesimi preparati puoi sceglierne uno qualsiasi dalle liste di bardo, chierico, druido e mago: per te contano come incantesimi da bardo. Puoi sostituire un preparato con uno di queste liste.",
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "superior_inspiration",
+     "name": "Ispirazione superiore",
+     "description": "Quando tiri l'iniziativa e hai meno di due usi di Ispirazione bardica, ne recuperi fino ad averne due.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono del richiamo degli incantesimi.",
+     "choices": [
+      {
+       "id": "epic_boon_bard",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "words_of_creation",
+     "name": "Parole della creazione",
+     "description": "Parola del potere guarire e Parola del potere uccidere sono sempre preparate; quando le lanci puoi bersagliare una seconda creatura entro 3 m dal primo bersaglio.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "power_word_heal",
+       "mode": "alwaysPrepared"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "power_word_kill",
+       "mode": "alwaysPrepared"
+      }
+     ],
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "bardic_die": [
+     "d6",
+     "d6",
+     "d6",
+     "d6",
+     "d8",
+     "d8",
+     "d8",
+     "d8",
+     "d8",
+     "d10",
+     "d10",
+     "d10",
+     "d10",
+     "d10",
+     "d12",
+     "d12",
+     "d12",
+     "d12",
+     "d12",
+     "d12"
+    ],
+    "cantrips": [
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "prepared": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "cleric",
+   "name": "Chierico",
+   "description": "Incantatore sacro: Ordine divino, Incanalare divinità e guarigione o potere offensivo sacro.",
+   "hitDie": 8,
+   "primaryAbility": [
+    "wis"
+   ],
+   "saves": [
+    "wis",
+    "cha"
+   ],
+   "multiclassRequirement": "ability:wis>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "history",
+     "insight",
+     "medicine",
+     "persuasion",
+     "religion"
+    ]
+   },
+   "armorTraining": [
+    "light",
+    "medium",
+    "shield"
+   ],
+   "weaponProficiency": [
+    "simple"
+   ],
+   "caster": "full",
+   "spellAbility": "wis",
+   "spellList": "cleric",
+   "spellSlots": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     1,
+     1
+    ]
+   ],
+   "multiclass": {
+    "weapons": [],
+    "armor": [
+     "light",
+     "medium",
+     "shield"
+    ],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "chain_shirt",
+       "qty": 1
+      },
+      {
+       "item": "shield",
+       "qty": 1
+      },
+      {
+       "item": "mace",
+       "qty": 1
+      },
+      {
+       "item": "$holy_symbol",
+       "qty": 1
+      },
+      {
+       "item": "priests_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 7
+    },
+    "B": {
+     "items": [],
+     "gp": 110
+    }
+   },
+   "choices": [
+    {
+     "id": "cleric_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "history",
+       "name": "Storia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "history"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medicine",
+       "name": "Medicina",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "medicine"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "persuasion",
+       "name": "Persuasione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "persuasion"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "name": "Religione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "religion"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "cleric_cantrips",
+     "label": "Trucchetti",
+     "count": 1,
+     "countFrom": "cantrips",
+     "source": "cantrips:cleric"
+    },
+    {
+     "id": "cleric_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:cleric"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "spellcasting",
+     "name": "Incantesimi",
+     "description": "Lanci incantesimi da chierico con Saggezza, usando un simbolo sacro come focus. Conosci 3 trucchetti (altri al 4° e 10°) e prepari incantesimi (colonna Incantesimi preparati) dalla lista del chierico; dopo un riposo lungo puoi cambiare la lista. Gli slot tornano con un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "divine_order",
+     "name": "Ordine divino",
+     "description": "Scegli un ruolo sacro: Protettore (competenza con armi da guerra e armature pesanti) o Taumaturgo (un trucchetto extra e bonus alle prove di Intelligenza (Arcano o Religione) pari al modificatore di Saggezza, minimo +1).",
+     "choices": [
+      {
+       "id": "cleric_divine_order",
+       "label": "Ordine divino",
+       "count": 1,
+       "options": [
+        {
+         "id": "protector",
+         "name": "Protettore",
+         "effects": [
+          {
+           "op": "grantWeaponProficiency",
+           "weapons": [
+            "martial"
+           ]
+          },
+          {
+           "op": "grantArmorTraining",
+           "training": [
+            "heavy"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "thaumaturge",
+         "name": "Taumaturgo",
+         "effects": [
+          {
+           "op": "extraCantrips",
+           "count": 1
+          },
+          {
+           "op": "checkBonus",
+           "value": "max(1, mod:wis)",
+           "skills": [
+            "arcana",
+            "religion"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "channel_divinity",
+     "name": "Incanalare divinità",
+     "description": "Incanali energia divina con due effetti: Scintilla divina (azione di Magia: una creatura entro 9 m recupera 1d8 + Sag PF, o subisce danni necrotici/radiosi con TS su Costituzione; più dadi al 7°, 13°, 18°) e Scacciare non morti (TS su Saggezza o i non morti entro 9 m sono spaventati e incapacitati 1 minuto). Usi nella colonna Incanalare divinità: ne recuperi 1 con un riposo breve, tutti con uno lungo.",
+     "usage": {
+      "uses": {
+       "table": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4
+       ]
+      },
+      "recharge": "long_rest",
+      "partialShortRest": 1
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "cleric_subclass",
+     "name": "Sottoclasse del chierico",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_cleric_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_cleric_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_cleric_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_cleric_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "sear_undead",
+     "name": "Bruciare i non morti",
+     "description": "Quando usi Scacciare non morti tira un numero di d8 pari al modificatore di Saggezza (minimo 1): i non morti che falliscono il tiro salvezza subiscono quei danni radiosi.",
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "blessed_strikes",
+     "name": "Colpi benedetti",
+     "description": "Scegli: Colpo divino (una volta per turno, quando colpisci con un'arma, +1d8 danni necrotici o radiosi) oppure Incantesimi potenti (aggiungi Saggezza ai danni dei trucchetti da chierico).",
+     "choices": [
+      {
+       "id": "cleric_blessed_strikes",
+       "label": "Colpi benedetti",
+       "count": 1,
+       "options": [
+        {
+         "id": "divine_strike",
+         "name": "Colpo divino"
+        },
+        {
+         "id": "potent_spellcasting",
+         "name": "Incantesimi potenti"
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "divine_intervention",
+     "name": "Intervento divino",
+     "description": "Come azione di Magia lanci un incantesimo da chierico qualsiasi di 5° livello o inferiore (senza reazione) senza slot né componenti materiali. Una volta per riposo lungo.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "improved_blessed_strikes",
+     "name": "Colpi benedetti migliorati",
+     "description": "Colpo divino: +2d8. Incantesimi potenti: quando un tuo trucchetto da chierico infligge danni, puoi dare a te o a una creatura entro 18 m PF temporanei pari al doppio del modificatore di Saggezza.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono del fato.",
+     "choices": [
+      {
+       "id": "epic_boon_cleric",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "greater_divine_intervention",
+     "name": "Intervento divino superiore",
+     "description": "Con Intervento divino puoi scegliere Desiderio; se lo fai non puoi usare di nuovo Intervento divino finché non completi 2d4 riposi lunghi.",
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "channel_divinity": [
+     0,
+     2,
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4
+    ],
+    "cantrips": [
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5
+    ],
+    "prepared": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "druid",
+   "name": "Druido",
+   "description": "Custode della natura: Forma selvatica, incantesimi druidici e potere elementale.",
+   "hitDie": 8,
+   "primaryAbility": [
+    "wis"
+   ],
+   "saves": [
+    "int",
+    "wis"
+   ],
+   "multiclassRequirement": "ability:wis>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "animal_handling",
+     "arcana",
+     "insight",
+     "medicine",
+     "nature",
+     "perception",
+     "religion",
+     "survival"
+    ]
+   },
+   "armorTraining": [
+    "light",
+    "shield"
+   ],
+   "weaponProficiency": [
+    "simple"
+   ],
+   "toolProficiency": [
+    "herbalism_kit"
+   ],
+   "caster": "full",
+   "spellAbility": "wis",
+   "spellList": "druid",
+   "spellSlots": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     1,
+     1
+    ]
+   ],
+   "multiclass": {
+    "weapons": [],
+    "armor": [
+     "light",
+     "shield"
+    ],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "leather_armor",
+       "qty": 1
+      },
+      {
+       "item": "shield",
+       "qty": 1
+      },
+      {
+       "item": "sickle",
+       "qty": 1
+      },
+      {
+       "item": "druidic_focus_wooden_staff",
+       "qty": 1
+      },
+      {
+       "item": "explorers_pack",
+       "qty": 1
+      },
+      {
+       "item": "herbalism_kit",
+       "qty": 1
+      }
+     ],
+     "gp": 9
+    },
+    "B": {
+     "items": [],
+     "gp": 50
+    }
+   },
+   "choices": [
+    {
+     "id": "druid_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "animal_handling",
+       "name": "Addestrare animali",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "animal_handling"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "arcana",
+       "name": "Arcano",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "arcana"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medicine",
+       "name": "Medicina",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "medicine"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nature",
+       "name": "Natura",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "nature"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perception",
+       "name": "Percezione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "perception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "name": "Religione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "religion"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "survival",
+       "name": "Sopravvivenza",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "survival"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "druid_cantrips",
+     "label": "Trucchetti",
+     "count": 1,
+     "countFrom": "cantrips",
+     "source": "cantrips:druid"
+    },
+    {
+     "id": "druid_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:druid"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "druidic",
+     "name": "Druidico",
+     "description": "Conosci il Druidico, la lingua segreta dell'ordine (puoi lasciare messaggi nascosti: CD 15 di Intelligenza (Indagare) per notarli). Parlare con gli animali è sempre preparato.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "speak_with_animals",
+       "mode": "alwaysPrepared"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "spellcasting",
+     "name": "Incantesimi",
+     "description": "Lanci incantesimi da druido con Saggezza, usando un focus druidico. Conosci 2 trucchetti (altri al 4° e 10°) e prepari incantesimi (colonna Incantesimi preparati) dalla lista del druido; dopo un riposo lungo puoi cambiare la lista. Gli slot tornano con un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "primal_order",
+     "name": "Ordine primordiale",
+     "description": "Scegli un ruolo sacro: Mago (un trucchetto extra e bonus alle prove di Intelligenza (Arcano o Natura) pari al modificatore di Saggezza, minimo +1) o Custode (competenza con armi da guerra e armature medie).",
+     "choices": [
+      {
+       "id": "druid_primal_order",
+       "label": "Ordine primordiale",
+       "count": 1,
+       "options": [
+        {
+         "id": "magician",
+         "name": "Mago",
+         "effects": [
+          {
+           "op": "extraCantrips",
+           "count": 1
+          },
+          {
+           "op": "checkBonus",
+           "value": "max(1, mod:wis)",
+           "skills": [
+            "arcana",
+            "nature"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "warden",
+         "name": "Custode",
+         "effects": [
+          {
+           "op": "grantWeaponProficiency",
+           "weapons": [
+            "martial"
+           ]
+          },
+          {
+           "op": "grantArmorTraining",
+           "training": [
+            "medium"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "wild_shape",
+     "name": "Forma selvatica",
+     "description": "Come azione bonus assumi la forma di una bestia che conosci (4 forme, GS massimo 1/4 e senza volo; 6 forme e GS 1/2 al 4°; 8 forme, GS 1 e volo all'8°) per ore pari a metà del livello da druido. Ottieni PF temporanei pari al livello da druido; mantieni personalità, PF e privilegi ma non puoi lanciare incantesimi (la concentrazione resta). Usi nella colonna Forma selvatica: 1 con un riposo breve, tutti con uno lungo.",
+     "usage": {
+      "uses": {
+       "table": [
+        0,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4
+       ]
+      },
+      "recharge": "long_rest",
+      "partialShortRest": 1
+     },
+     "activation": {
+      "resource": "wild_shape",
+      "duration": "metà del livello da druido in ore"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "wild_companion",
+     "name": "Compagno selvatico",
+     "description": "Come azione di Magia, spendendo uno slot o un uso di Forma selvatica, lanci Trova famiglio senza componenti materiali: il famiglio è un folletto e svanisce dopo un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "druid_subclass",
+     "name": "Sottoclasse del druido",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_druid_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_druid_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_druid_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_druid_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "wild_resurgence",
+     "name": "Rinascita selvatica",
+     "description": "Una volta per turno, se hai finito gli usi di Forma selvatica, puoi spendere uno slot per recuperarne uno (senza azione); puoi anche spendere un uso di Forma selvatica per ottenere uno slot di 1° livello, una volta per riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "elemental_fury",
+     "name": "Furia elementale",
+     "description": "Scegli: Incantesimi potenti (aggiungi Saggezza ai danni dei trucchetti da druido) o Colpo primordiale (una volta per turno, quando colpisci con un'arma o un attacco in Forma selvatica, +1d8 danni da freddo, fuoco, fulmine o tuono).",
+     "choices": [
+      {
+       "id": "druid_elemental_fury",
+       "label": "Furia elementale",
+       "count": 1,
+       "options": [
+        {
+         "id": "potent_spellcasting",
+         "name": "Incantesimi potenti"
+        },
+        {
+         "id": "primal_strike",
+         "name": "Colpo primordiale"
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "improved_elemental_fury",
+     "name": "Furia elementale migliorata",
+     "description": "Incantesimi potenti: i trucchetti da druido con gittata di 3 m o più hanno gittata +90 m. Colpo primordiale: danni extra 2d8.",
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "beast_spells",
+     "name": "Incantesimi bestiali",
+     "description": "In Forma selvatica puoi lanciare incantesimi, tranne quelli con componenti materiali costose o consumate.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono del viaggio dimensionale.",
+     "choices": [
+      {
+       "id": "epic_boon_druid",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "archdruid",
+     "name": "Arcidruido",
+     "description": "Forma selvatica sempreverde (tirando l'iniziativa senza usi ne recuperi uno); Mago della natura (converti usi di Forma selvatica in uno slot, 2 livelli per uso, una volta per riposo lungo); Corpo senza tempo (invecchi di 1 anno ogni 10).",
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "wild_shape": [
+     0,
+     2,
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4
+    ],
+    "cantrips": [
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "prepared": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "fighter",
+   "name": "Guerriero",
+   "description": "Maestro delle armi e delle armature: più attacchi, Recuperare energie e azioni aggiuntive.",
+   "hitDie": 10,
+   "primaryAbility": [
+    "str",
+    "dex"
+   ],
+   "saves": [
+    "str",
+    "con"
+   ],
+   "multiclassRequirement": "ability:str>=13 || ability:dex>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "acrobatics",
+     "animal_handling",
+     "athletics",
+     "history",
+     "insight",
+     "intimidation",
+     "persuasion",
+     "perception",
+     "survival"
+    ]
+   },
+   "armorTraining": [
+    "light",
+    "medium",
+    "heavy",
+    "shield"
+   ],
+   "weaponProficiency": [
+    "simple",
+    "martial"
+   ],
+   "caster": "none",
+   "multiclass": {
+    "weapons": [
+     "martial"
+    ],
+    "armor": [
+     "light",
+     "medium",
+     "shield"
+    ],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "chain_mail",
+       "qty": 1
+      },
+      {
+       "item": "greatsword",
+       "qty": 1
+      },
+      {
+       "item": "flail",
+       "qty": 1
+      },
+      {
+       "item": "javelin",
+       "qty": 8
+      },
+      {
+       "item": "dungeoneers_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 4
+    },
+    "B": {
+     "items": [
+      {
+       "item": "studded_leather_armor",
+       "qty": 1
+      },
+      {
+       "item": "scimitar",
+       "qty": 1
+      },
+      {
+       "item": "shortsword",
+       "qty": 1
+      },
+      {
+       "item": "longbow",
+       "qty": 1
+      },
+      {
+       "item": "arrows",
+       "qty": 1
+      },
+      {
+       "item": "quiver",
+       "qty": 1
+      },
+      {
+       "item": "dungeoneers_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 11
+    },
+    "C": {
+     "items": [],
+     "gp": 155
+    }
+   },
+   "choices": [
+    {
+     "id": "fighter_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "acrobatics",
+       "name": "Acrobazia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "acrobatics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "animal_handling",
+       "name": "Addestrare animali",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "animal_handling"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "athletics",
+       "name": "Atletica",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "athletics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "name": "Storia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "history"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intimidation",
+       "name": "Intimidire",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "intimidation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "persuasion",
+       "name": "Persuasione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "persuasion"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perception",
+       "name": "Percezione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "perception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "survival",
+       "name": "Sopravvivenza",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "survival"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "fighting_style",
+     "name": "Stile di combattimento",
+     "description": "Ottieni un talento Stile di combattimento a tua scelta (consigliato: Difesa). A ogni livello da guerriero puoi sostituirlo con un altro.",
+     "choices": [
+      {
+       "id": "fighter_fighting_style",
+       "label": "Stile di combattimento",
+       "count": 1,
+       "source": "feats:fighting_style"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "second_wind",
+     "name": "Recuperare energie",
+     "description": "Come azione bonus recuperi 1d10 + livello da guerriero PF. Gli usi sono nella colonna Recuperare energie: ne recuperi 1 con un riposo breve, tutti con uno lungo.",
+     "usage": {
+      "uses": {
+       "table": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+       ]
+      },
+      "recharge": "long_rest",
+      "partialShortRest": 1
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "weapon_mastery",
+     "name": "Padronanza d'armi",
+     "description": "Puoi usare le proprietà di padronanza di 3 tipi di armi semplici o da guerra (altri con i livelli, colonna Padronanza d'armi); a ogni riposo lungo puoi cambiarne uno.",
+     "choices": [
+      {
+       "id": "fighter_weapon_mastery",
+       "label": "Padronanza d'armi",
+       "countFrom": "weapon_mastery",
+       "source": "weaponMastery"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "action_surge",
+     "name": "Azione impetuosa",
+     "description": "Nel tuo turno puoi fare un'azione aggiuntiva (non quella di Magia). Una volta per riposo breve o lungo; due volte dal 17° livello, ma una sola nello stesso turno.",
+     "usage": {
+      "uses": {
+       "table": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2
+       ]
+      },
+      "recharge": "short_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "tactical_mind",
+     "name": "Mente tattica",
+     "description": "Quando fallisci una prova di caratteristica puoi spendere un uso di Recuperare energie: tira 1d10 e sommalo alla prova. Se fallisce comunque, l'uso non viene speso.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "fighter_subclass",
+     "name": "Sottoclasse del guerriero",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_fighter_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "ability_score_improvement_6",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_fighter_6",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_fighter_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_fighter_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "ability_score_improvement_14",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_fighter_14",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_fighter_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "extra_attack",
+     "name": "Attacco extra",
+     "description": "Attacchi due volte con l'azione Attacco.",
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "tactical_shift",
+     "name": "Spostamento tattico",
+     "description": "Quando attivi Recuperare energie ti muovi fino a metà della velocità senza provocare attacchi di opportunità.",
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "indomitable",
+     "name": "Indomabile",
+     "description": "Se fallisci un tiro salvezza puoi ripeterlo con un bonus pari al tuo livello da guerriero; devi usare il nuovo risultato. Una volta per riposo lungo; 2 volte dal 13° livello, 3 dal 17°.",
+     "usage": {
+      "uses": {
+       "table": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3
+       ]
+      },
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "tactical_master",
+     "name": "Signore delle tattiche",
+     "description": "Con un'arma di cui usi la padronanza puoi sostituirne la proprietà con Spinta, Fiaccare o Lentezza.",
+     "origin": "srd"
+    },
+    {
+     "level": 11,
+     "id": "two_extra_attacks",
+     "name": "Due attacchi extra",
+     "description": "Attacchi tre volte con l'azione Attacco.",
+     "origin": "srd"
+    },
+    {
+     "level": 13,
+     "id": "studied_attacks",
+     "name": "Attacchi studiati",
+     "description": "Se manchi una creatura con un tiro per colpire, hai Vantaggio al tuo prossimo tiro per colpire contro di essa prima della fine del tuo turno successivo.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono delle abilità di combattimento.",
+     "choices": [
+      {
+       "id": "epic_boon_fighter",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "three_extra_attacks",
+     "name": "Tre attacchi extra",
+     "description": "Attacchi quattro volte con l'azione Attacco.",
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "second_wind": [
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "weapon_mastery": [
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     6,
+     6,
+     6,
+     6,
+     6
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "monk",
+   "name": "Monaco",
+   "description": "Artista marziale agile: colpi senz'armi, punti concentrazione e movimento straordinario.",
+   "hitDie": 8,
+   "primaryAbility": [
+    "dex",
+    "wis"
+   ],
+   "saves": [
+    "str",
+    "dex"
+   ],
+   "multiclassRequirement": "ability:dex>=13 && ability:wis>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "acrobatics",
+     "athletics",
+     "history",
+     "insight",
+     "religion",
+     "stealth"
+    ]
+   },
+   "armorTraining": [],
+   "weaponProficiency": [
+    "simple",
+    "martial[light]"
+   ],
+   "caster": "none",
+   "multiclass": {
+    "weapons": [],
+    "armor": [],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "spear",
+       "qty": 1
+      },
+      {
+       "item": "dagger",
+       "qty": 5
+      },
+      {
+       "item": "$tool",
+       "qty": 1
+      },
+      {
+       "item": "explorers_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 11
+    },
+    "B": {
+     "items": [],
+     "gp": 50
+    }
+   },
+   "choices": [
+    {
+     "id": "monk_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "acrobatics",
+       "name": "Acrobazia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "acrobatics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "athletics",
+       "name": "Atletica",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "athletics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "name": "Storia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "history"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "name": "Religione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "religion"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stealth",
+       "name": "Furtività",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "stealth"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "monk_tools",
+     "label": "Strumento",
+     "count": 1,
+     "source": "tools:artisan_musical"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "martial_arts",
+     "name": "Arti marziali",
+     "description": "Senza armatura né scudo e con soli colpi senz'armi o armi da monaco (armi da mischia semplici o da guerra Leggere): colpo senz'armi bonus come azione bonus; dado di Arti marziali al posto dei danni normali (colonna Arti marziali); puoi usare Destrezza al posto di Forza per tiri per colpire e danni e per la CD di afferrare e spingere.",
+     "effects": [
+      {
+       "op": "unarmedDie",
+       "die": "1d6",
+       "when": "classLevel:monk>=1 && wearingArmor:none && !shield"
+      },
+      {
+       "op": "unarmedDie",
+       "die": "1d8",
+       "when": "classLevel:monk>=5 && wearingArmor:none && !shield"
+      },
+      {
+       "op": "unarmedDie",
+       "die": "1d10",
+       "when": "classLevel:monk>=11 && wearingArmor:none && !shield"
+      },
+      {
+       "op": "unarmedDie",
+       "die": "1d12",
+       "when": "classLevel:monk>=17 && wearingArmor:none && !shield"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "unarmored_defense",
+     "name": "Difesa senza armatura",
+     "description": "Senza armatura né scudo la CA base è 10 + Des + Sag.",
+     "effects": [
+      {
+       "op": "acFormula",
+       "formula": "10 + mod:dex + mod:wis",
+       "shieldAllowed": false,
+       "when": "wearingArmor:none"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "monks_focus",
+     "name": "Concentrazione da monaco",
+     "description": "Ottieni punti concentrazione (colonna Punti concentrazione) che torni ad avere con un riposo breve o lungo. Li spendi per Raffica di colpi (2 colpi senz'armi come azione bonus), Difesa paziente (Disimpegno e Schivata come azione bonus) e Passo del vento (Disimpegno e Scatto come azione bonus, salto doppio). CD dei tuoi tiri salvezza: 8 + Sag + competenza. Senza spendere punti puoi comunque usare Disimpegno o Scatto come azione bonus.",
+     "usage": {
+      "uses": {
+       "table": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+       ]
+      },
+      "recharge": "short_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "unarmored_movement",
+     "name": "Movimento senza armatura",
+     "description": "Velocità +3 m (10 piedi) senza armatura né scudo; il bonus cresce con i livelli (colonna Movimento senza armatura).",
+     "effects": [
+      {
+       "op": "speedBonus",
+       "value": 10,
+       "when": "classLevel:monk>=2 && wearingArmor:none && !shield"
+      },
+      {
+       "op": "speedBonus",
+       "value": 5,
+       "when": "classLevel:monk>=6 && wearingArmor:none && !shield"
+      },
+      {
+       "op": "speedBonus",
+       "value": 5,
+       "when": "classLevel:monk>=10 && wearingArmor:none && !shield"
+      },
+      {
+       "op": "speedBonus",
+       "value": 5,
+       "when": "classLevel:monk>=14 && wearingArmor:none && !shield"
+      },
+      {
+       "op": "speedBonus",
+       "value": 5,
+       "when": "classLevel:monk>=18 && wearingArmor:none && !shield"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "uncanny_metabolism",
+     "name": "Metabolismo straordinario",
+     "description": "Quando tiri l'iniziativa recuperi tutti i punti concentrazione spesi e recuperi PF pari al tuo livello da monaco + un tiro del dado di Arti marziali. Una volta per riposo lungo.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "deflect_attacks",
+     "name": "Devia attacchi",
+     "description": "Con la reazione, quando un tiro per colpire che include danni contundenti, perforanti o taglienti ti colpisce, riduci i danni di 1d10 + Des + livello da monaco. Se scendono a 0 puoi spendere 1 punto concentrazione per rimandare l'energia a una creatura visibile (entro 1,5 m se in mischia, 18 m a distanza): tiro salvezza su Destrezza o subisce due tiri del dado di Arti marziali + Des.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "monk_subclass",
+     "name": "Sottoclasse del monaco",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_monk_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_monk_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_monk_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_monk_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "slow_fall",
+     "name": "Caduta lenta",
+     "description": "Con la reazione, quando cadi, riduci i danni da caduta di 5 × il tuo livello da monaco.",
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "extra_attack",
+     "name": "Attacco extra",
+     "description": "Attacchi due volte con l'azione Attacco.",
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "stunning_strike",
+     "name": "Colpo stordente",
+     "description": "Una volta per turno, se colpisci con un'arma da monaco o un colpo senz'armi, puoi spendere 1 punto concentrazione: tiro salvezza su Costituzione, se fallito il bersaglio è stordito fino al tuo prossimo turno; se superato, la sua velocità è dimezzata e il prossimo attacco contro di lui ha Vantaggio.",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "empowered_strikes",
+     "name": "Colpi potenziati",
+     "description": "I tuoi colpi senz'armi possono infliggere danni da Forza invece del loro tipo normale.",
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "evasion",
+     "name": "Elusione",
+     "description": "Se un effetto ti permette un tiro salvezza su Destrezza per dimezzare i danni, non subisci danni se lo superi e solo la metà se lo fallisci (non se sei incapacitato).",
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "acrobatic_movement",
+     "name": "Movimento acrobatico",
+     "description": "Senza armatura né scudo ti muovi sulle superfici verticali e liquide durante il tuo turno senza cadere.",
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "heightened_focus",
+     "name": "Concentrazione superiore",
+     "description": "Raffica di colpi infligge 3 colpi; Difesa paziente dà PF temporanei pari a due tiri del dado di Arti marziali; Passo del vento permette di portare con te una creatura consenziente entro 1,5 m (Grande o più piccola).",
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "self_restoration",
+     "name": "Autorigenerazione",
+     "description": "A fine turno puoi rimuovere da te le condizioni affascinato, spaventato o avvelenato; rinunciare a cibo e bevande non ti dà livelli di indebolimento.",
+     "origin": "srd"
+    },
+    {
+     "level": 13,
+     "id": "deflect_energy",
+     "name": "Deviare energia",
+     "description": "Devia attacchi funziona contro attacchi che infliggono qualsiasi tipo di danno.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "disciplined_survivor",
+     "name": "Esperto di sopravvivenza disciplinato",
+     "description": "Competenza in tutti i tiri salvezza. Quando ne fallisci uno puoi spendere 1 punto concentrazione per ripeterlo (usi il nuovo risultato).",
+     "effects": [
+      {
+       "op": "grantSaveProficiency",
+       "abilities": [
+        "str",
+        "dex",
+        "con",
+        "int",
+        "wis",
+        "cha"
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "perfect_focus",
+     "name": "Concentrazione perfetta",
+     "description": "Quando tiri l'iniziativa senza usare Metabolismo straordinario, recuperi punti concentrazione fino ad averne 4 (se ne hai 3 o meno).",
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "superior_defense",
+     "name": "Difesa superiore",
+     "description": "All'inizio del turno puoi spendere 3 punti concentrazione: per 1 minuto (o finché sei incapacitato) hai resistenza a tutti i danni tranne quelli da Forza.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono dell'offensiva irresistibile.",
+     "choices": [
+      {
+       "id": "epic_boon_monk",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "body_and_mind",
+     "name": "Corpo e mente",
+     "description": "Destrezza e Saggezza +4 (massimo 25).",
+     "effects": [
+      {
+       "op": "abilityScoreIncrease",
+       "abilities": [
+        "dex",
+        "wis"
+       ],
+       "amount": 4,
+       "cap": 25
+      }
+     ],
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "martial_arts": [
+     "1d6",
+     "1d6",
+     "1d6",
+     "1d6",
+     "1d8",
+     "1d8",
+     "1d8",
+     "1d8",
+     "1d8",
+     "1d8",
+     "1d10",
+     "1d10",
+     "1d10",
+     "1d10",
+     "1d10",
+     "1d10",
+     "1d12",
+     "1d12",
+     "1d12",
+     "1d12"
+    ],
+    "focus_points": [
+     0,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ],
+    "unarmored_movement": [
+     0,
+     10,
+     10,
+     10,
+     10,
+     15,
+     15,
+     15,
+     15,
+     20,
+     20,
+     20,
+     20,
+     25,
+     25,
+     25,
+     25,
+     30,
+     30,
+     30
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "paladin",
+   "name": "Paladino",
+   "description": "Guerriero sacro giurato: Imposizione delle mani, Punizione divina, Incanalare divinità e aure protettive.",
+   "hitDie": 10,
+   "primaryAbility": [
+    "str",
+    "cha"
+   ],
+   "saves": [
+    "wis",
+    "cha"
+   ],
+   "multiclassRequirement": "ability:str>=13 && ability:cha>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "athletics",
+     "insight",
+     "intimidation",
+     "medicine",
+     "persuasion",
+     "religion"
+    ]
+   },
+   "armorTraining": [
+    "light",
+    "medium",
+    "heavy",
+    "shield"
+   ],
+   "weaponProficiency": [
+    "simple",
+    "martial"
+   ],
+   "caster": "half",
+   "spellAbility": "cha",
+   "spellList": "paladin",
+   "spellSlots": [
+    [
+     2
+    ],
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     3
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ]
+   ],
+   "multiclass": {
+    "weapons": [
+     "martial"
+    ],
+    "armor": [
+     "light",
+     "medium",
+     "shield"
+    ],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "chain_mail",
+       "qty": 1
+      },
+      {
+       "item": "shield",
+       "qty": 1
+      },
+      {
+       "item": "longsword",
+       "qty": 1
+      },
+      {
+       "item": "javelin",
+       "qty": 6
+      },
+      {
+       "item": "$holy_symbol",
+       "qty": 1
+      },
+      {
+       "item": "priests_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 9
+    },
+    "B": {
+     "items": [],
+     "gp": 150
+    }
+   },
+   "choices": [
+    {
+     "id": "paladin_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "athletics",
+       "name": "Atletica",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "athletics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intimidation",
+       "name": "Intimidire",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "intimidation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medicine",
+       "name": "Medicina",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "medicine"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "persuasion",
+       "name": "Persuasione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "persuasion"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "name": "Religione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "religion"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "paladin_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:paladin"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "lay_on_hands",
+     "name": "Imposizione delle mani",
+     "description": "Hai una riserva di PF curativi pari a 5 × livello da paladino (si ricostituisce con un riposo lungo). Come azione bonus tocchi una creatura e ripristini PF dalla riserva; con 5 PF della riserva puoi curare l'avvelenamento (senza ripristinare PF).",
+     "usage": {
+      "uses": "5 * classLevel:paladin",
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "spellcasting",
+     "name": "Incantesimi",
+     "description": "Lanci incantesimi da paladino con Carisma, usando un simbolo sacro come focus. Prepari incantesimi (colonna Incantesimi preparati) dalla lista del paladino, di un livello per cui hai slot; dopo un riposo lungo puoi sostituirne uno. Gli slot tornano con un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "weapon_mastery",
+     "name": "Padronanza d'armi",
+     "description": "Puoi usare le proprietà di padronanza di 2 tipi di armi in cui hai competenza; a ogni riposo lungo puoi cambiarne uno.",
+     "choices": [
+      {
+       "id": "paladin_weapon_mastery",
+       "label": "Padronanza d'armi",
+       "count": 2,
+       "source": "weaponMastery"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "fighting_style",
+     "name": "Stile di combattimento",
+     "description": "Ottieni un talento Stile di combattimento a tua scelta, oppure Guerriero benedetto: impari due trucchetti da chierico (contano come da paladino, con Carisma) e puoi sostituirne uno a ogni livello da paladino.",
+     "choices": [
+      {
+       "id": "paladin_fighting_style",
+       "label": "Stile di combattimento",
+       "count": 1,
+       "source": "feats:fighting_style",
+       "group": "paladin_style"
+      },
+      {
+       "id": "paladin_blessed_warrior",
+       "label": "Guerriero benedetto",
+       "count": 2,
+       "source": "cantrips:cleric",
+       "ability": "cha",
+       "group": "paladin_style"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "paladins_smite",
+     "name": "Punizione del paladino",
+     "description": "Punizione divina è sempre preparata e puoi lanciarla una volta senza slot per riposo lungo.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "divine_smite",
+       "mode": "alwaysPrepared",
+       "freeCast": {
+        "uses": 1,
+        "recharge": "long_rest"
+       }
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "channel_divinity",
+     "name": "Incanalare divinità",
+     "description": "Incanali energia divina; inizi con Percezione del divino (azione bonus: per 10 minuti conosci posizione e tipo di celestiali, immondi e non morti entro 18 m e di luoghi sacri o sacrileghi). Usi nella colonna Incanalare divinità: 1 con un riposo breve, tutti con uno lungo.",
+     "usage": {
+      "uses": {
+       "table": [
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+       ]
+      },
+      "recharge": "long_rest",
+      "partialShortRest": 1
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "paladin_subclass",
+     "name": "Sottoclasse del paladino",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_paladin_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_paladin_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_paladin_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_paladin_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "extra_attack",
+     "name": "Attacco extra",
+     "description": "Attacchi due volte con l'azione Attacco.",
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "faithful_steed",
+     "name": "Fido destriero",
+     "description": "Trova cavalcatura è sempre preparato e puoi lanciarlo una volta senza slot per riposo lungo.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "find_steed",
+       "mode": "alwaysPrepared",
+       "freeCast": {
+        "uses": 1,
+        "recharge": "long_rest"
+       }
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "aura_of_protection",
+     "name": "Aura di protezione",
+     "description": "Emanazione di 3 m (inattiva se incapacitato): tu e i tuoi alleati ottenete un bonus ai tiri salvezza pari al tuo modificatore di Carisma (minimo +1). Un solo bonus di questo tipo per creatura.",
+     "effects": [
+      {
+       "op": "saveBonus",
+       "value": "max(1, mod:cha)",
+       "when": "classLevel:paladin>=6"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "abjure_foes",
+     "name": "Abiurare nemici",
+     "description": "Azione di Magia, spendendo un uso di Incanalare divinità: fino a Carisma creature (minimo 1) entro 18 m fanno un TS su Saggezza o sono spaventate 1 minuto (o finché subiscono danni) e possono solo muoversi, o agire, o usare un'azione bonus.",
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "aura_of_courage",
+     "name": "Aura di coraggio",
+     "description": "Tu e i tuoi alleati siete immuni alla paura nell'Aura di protezione; un alleato spaventato che vi entra non subisce più l'effetto finché resta dentro.",
+     "origin": "srd"
+    },
+    {
+     "level": 11,
+     "id": "radiant_strikes",
+     "name": "Colpi radiosi",
+     "description": "Quando colpisci con un'arma da mischia o un colpo senz'armi, il bersaglio subisce 1d8 danni radiosi aggiuntivi.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "restoring_touch",
+     "name": "Tocco rigenerante",
+     "description": "Quando usi Imposizione delle mani puoi anche rimuovere accecato, affascinato, assordato, paralizzato, spaventato o stordito, spendendo 5 PF della riserva per condizione.",
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "aura_expansion",
+     "name": "Ampliamento dell'aura",
+     "description": "L'Aura di protezione diventa un'emanazione di 9 m.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono della vista pura.",
+     "choices": [
+      {
+       "id": "epic_boon_paladin",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "channel_divinity": [
+     0,
+     0,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3
+    ],
+    "prepared": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     6,
+     7,
+     7,
+     9,
+     9,
+     10,
+     10,
+     11,
+     11,
+     12,
+     12,
+     14,
+     14,
+     15,
+     15
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "ranger",
+   "name": "Ranger",
+   "description": "Esploratore e cacciatore: Marchio del cacciatore, incantesimi della natura e abilità di sopravvivenza.",
+   "hitDie": 10,
+   "primaryAbility": [
+    "dex",
+    "wis"
+   ],
+   "saves": [
+    "str",
+    "dex"
+   ],
+   "multiclassRequirement": "ability:dex>=13 && ability:wis>=13",
+   "skillChoices": {
+    "count": 3,
+    "from": [
+     "animal_handling",
+     "athletics",
+     "insight",
+     "investigation",
+     "nature",
+     "perception",
+     "stealth",
+     "survival"
+    ]
+   },
+   "armorTraining": [
+    "light",
+    "medium",
+    "shield"
+   ],
+   "weaponProficiency": [
+    "simple",
+    "martial"
+   ],
+   "caster": "half",
+   "spellAbility": "wis",
+   "spellList": "ranger",
+   "spellSlots": [
+    [
+     2
+    ],
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     3
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ]
+   ],
+   "multiclass": {
+    "weapons": [
+     "martial"
+    ],
+    "armor": [
+     "light",
+     "medium",
+     "shield"
+    ],
+    "skills": 1,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "studded_leather_armor",
+       "qty": 1
+      },
+      {
+       "item": "scimitar",
+       "qty": 1
+      },
+      {
+       "item": "shortsword",
+       "qty": 1
+      },
+      {
+       "item": "longbow",
+       "qty": 1
+      },
+      {
+       "item": "arrows",
+       "qty": 1
+      },
+      {
+       "item": "quiver",
+       "qty": 1
+      },
+      {
+       "item": "druidic_focus_sprig_of_mistletoe",
+       "qty": 1
+      },
+      {
+       "item": "explorers_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 7
+    },
+    "B": {
+     "items": [],
+     "gp": 150
+    }
+   },
+   "choices": [
+    {
+     "id": "ranger_skills",
+     "label": "Abilità di classe",
+     "count": 3,
+     "options": [
+      {
+       "id": "animal_handling",
+       "name": "Addestrare animali",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "animal_handling"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "athletics",
+       "name": "Atletica",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "athletics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigation",
+       "name": "Indagare",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "investigation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nature",
+       "name": "Natura",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "nature"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perception",
+       "name": "Percezione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "perception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stealth",
+       "name": "Furtività",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "stealth"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "survival",
+       "name": "Sopravvivenza",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "survival"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ranger_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:ranger"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "spellcasting",
+     "name": "Incantesimi",
+     "description": "Lanci incantesimi da ranger con Saggezza, usando un focus druidico. Prepari incantesimi (colonna Incantesimi preparati) dalla lista del ranger, di un livello per cui hai slot; dopo un riposo lungo puoi sostituirne uno. Gli slot tornano con un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "favored_enemy",
+     "name": "Nemico prescelto",
+     "description": "Marchio del cacciatore è sempre preparato e puoi lanciarlo senza slot un numero di volte indicato nella colonna Nemico prescelto, per riposo lungo.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "hunters_mark",
+       "mode": "alwaysPrepared"
+      }
+     ],
+     "usage": {
+      "uses": {
+       "table": [
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        5,
+        5,
+        6,
+        6,
+        6,
+        6
+       ]
+      },
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "weapon_mastery",
+     "name": "Padronanza d'armi",
+     "description": "Puoi usare le proprietà di padronanza di 2 tipi di armi in cui hai competenza; a ogni riposo lungo puoi cambiarne uno.",
+     "choices": [
+      {
+       "id": "ranger_weapon_mastery",
+       "label": "Padronanza d'armi",
+       "count": 2,
+       "source": "weaponMastery"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "deft_explorer",
+     "name": "Esploratore esperto",
+     "description": "Maestria in un'abilità in cui hai competenza e due lingue a scelta.",
+     "choices": [
+      {
+       "id": "ranger_deft_expertise",
+       "label": "Maestria",
+       "count": 1,
+       "source": "expertise"
+      },
+      {
+       "id": "ranger_languages",
+       "label": "Lingue",
+       "count": 2,
+       "source": "languages:standard"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "fighting_style",
+     "name": "Stile di combattimento",
+     "description": "Ottieni un talento Stile di combattimento a tua scelta, oppure Guerriero druidico: impari due trucchetti da druido (contano come da ranger, con Saggezza) e puoi sostituirne uno a ogni livello da ranger.",
+     "choices": [
+      {
+       "id": "ranger_fighting_style",
+       "label": "Stile di combattimento",
+       "count": 1,
+       "source": "feats:fighting_style",
+       "group": "ranger_style"
+      },
+      {
+       "id": "ranger_druidic_warrior",
+       "label": "Guerriero druidico",
+       "count": 2,
+       "source": "cantrips:druid",
+       "ability": "wis",
+       "group": "ranger_style"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "ranger_subclass",
+     "name": "Sottoclasse del ranger",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_ranger_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_ranger_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_ranger_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_ranger_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "extra_attack",
+     "name": "Attacco extra",
+     "description": "Attacchi due volte con l'azione Attacco.",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "roving",
+     "name": "Girovago",
+     "description": "Velocità +3 m (10 piedi) se non indossi un'armatura pesante; velocità di scalata e di nuoto pari alla tua velocità.",
+     "effects": [
+      {
+       "op": "speedBonus",
+       "value": 10,
+       "when": "!wearingArmor:heavy"
+      },
+      {
+       "op": "setSpeed",
+       "mode": "climb",
+       "value": 30
+      },
+      {
+       "op": "setSpeed",
+       "mode": "swim",
+       "value": 30
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "expertise",
+     "name": "Maestria",
+     "description": "Maestria in altre due abilità in cui hai competenza.",
+     "choices": [
+      {
+       "id": "ranger_expertise_9",
+       "label": "Maestria",
+       "count": 2,
+       "source": "expertise"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "tireless",
+     "name": "Instancabile",
+     "description": "Azione di Magia: ottieni 1d8 + Saggezza PF temporanei (minimo 1), usi pari a Saggezza (minimo 1) per riposo lungo. Un riposo breve riduce di 1 il livello di indebolimento.",
+     "usage": {
+      "uses": "max(1, mod:wis)",
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 13,
+     "id": "relentless_hunter",
+     "name": "Cacciatore implacabile",
+     "description": "I danni subiti non interrompono la tua concentrazione su Marchio del cacciatore.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "natures_veil",
+     "name": "Velo della natura",
+     "description": "Azione bonus: diventi invisibile fino alla fine del tuo prossimo turno. Usi pari a Saggezza (minimo 1) per riposo lungo.",
+     "usage": {
+      "uses": "max(1, mod:wis)",
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 17,
+     "id": "precise_hunter",
+     "name": "Precisione del cacciatore",
+     "description": "Vantaggio ai tiri per colpire contro la creatura con il tuo Marchio del cacciatore.",
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "feral_senses",
+     "name": "Sensi ferini",
+     "description": "Vista cieca entro 9 m (30 piedi).",
+     "effects": [
+      {
+       "op": "sense",
+       "kind": "blindsight",
+       "range": 30
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono del viaggio dimensionale.",
+     "choices": [
+      {
+       "id": "epic_boon_ranger",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "foe_slayer",
+     "name": "Sterminatore di nemici",
+     "description": "I danni del Marchio del cacciatore usano un d10 invece di un d6.",
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "favored_enemy": [
+     2,
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     5,
+     5,
+     5,
+     5,
+     6,
+     6,
+     6,
+     6
+    ],
+    "prepared": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     6,
+     7,
+     7,
+     9,
+     9,
+     10,
+     10,
+     11,
+     11,
+     12,
+     12,
+     14,
+     14,
+     15,
+     15
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "rogue",
+   "name": "Ladro",
+   "description": "Specialista di furtività e precisione: Attacco furtivo, maestria nelle abilità e schivate prodigiose.",
+   "hitDie": 8,
+   "primaryAbility": [
+    "dex"
+   ],
+   "saves": [
+    "dex",
+    "int"
+   ],
+   "multiclassRequirement": "ability:dex>=13",
+   "skillChoices": {
+    "count": 4,
+    "from": [
+     "acrobatics",
+     "athletics",
+     "deception",
+     "insight",
+     "intimidation",
+     "investigation",
+     "perception",
+     "persuasion",
+     "sleight_of_hand",
+     "stealth"
+    ]
+   },
+   "armorTraining": [
+    "light"
+   ],
+   "weaponProficiency": [
+    "simple",
+    "martial[finesse|light]"
+   ],
+   "toolProficiency": [
+    "thieves_tools"
+   ],
+   "caster": "none",
+   "multiclass": {
+    "weapons": [],
+    "armor": [
+     "light"
+    ],
+    "skills": 1,
+    "toolChoices": 0,
+    "tools": [
+     "thieves_tools"
+    ]
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "leather_armor",
+       "qty": 1
+      },
+      {
+       "item": "dagger",
+       "qty": 2
+      },
+      {
+       "item": "shortsword",
+       "qty": 1
+      },
+      {
+       "item": "shortbow",
+       "qty": 1
+      },
+      {
+       "item": "arrows",
+       "qty": 1
+      },
+      {
+       "item": "quiver",
+       "qty": 1
+      },
+      {
+       "item": "thieves_tools",
+       "qty": 1
+      },
+      {
+       "item": "burglars_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 8
+    },
+    "B": {
+     "items": [],
+     "gp": 100
+    }
+   },
+   "choices": [
+    {
+     "id": "rogue_skills",
+     "label": "Abilità di classe",
+     "count": 4,
+     "options": [
+      {
+       "id": "acrobatics",
+       "name": "Acrobazia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "acrobatics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "athletics",
+       "name": "Atletica",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "athletics"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "deception",
+       "name": "Inganno",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "deception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intimidation",
+       "name": "Intimidire",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "intimidation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigation",
+       "name": "Indagare",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "investigation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "perception",
+       "name": "Percezione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "perception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "persuasion",
+       "name": "Persuasione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "persuasion"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "sleight_of_hand",
+       "name": "Rapidità di mano",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "sleight_of_hand"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "stealth",
+       "name": "Furtività",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "stealth"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "expertise",
+     "name": "Maestria",
+     "description": "Maestria in due abilità in cui hai competenza (consigliate Rapidità di mano e Furtività). Al 6° livello altre due.",
+     "choices": [
+      {
+       "id": "rogue_expertise_1",
+       "label": "Maestria",
+       "count": 2,
+       "source": "expertise"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "sneak_attack",
+     "name": "Attacco furtivo",
+     "description": "Una volta per turno infliggi danni extra (colonna Attacco furtivo) a una creatura che colpisci con un'arma accurata o a distanza se hai Vantaggio, oppure se un alleato non incapacitato è entro 1,5 m dal bersaglio (e non hai Svantaggio). I danni sono dello stesso tipo dell'arma.",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "thieves_cant",
+     "name": "Gergo ladresco",
+     "description": "Conosci il Gergo ladresco e un'altra lingua a tua scelta.",
+     "choices": [
+      {
+       "id": "rogue_language",
+       "label": "Lingua aggiuntiva",
+       "count": 1,
+       "source": "languages:standard"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "weapon_mastery",
+     "name": "Padronanza d'armi",
+     "description": "Puoi usare le proprietà di padronanza di 2 tipi di armi in cui hai competenza (per esempio pugnali e archi corti); a ogni riposo lungo puoi cambiarne uno.",
+     "choices": [
+      {
+       "id": "rogue_weapon_mastery",
+       "label": "Padronanza d'armi",
+       "count": 2,
+       "source": "weaponMastery"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "cunning_action",
+     "name": "Azione scaltra",
+     "description": "Nel tuo turno puoi usare come azione bonus Scatto, Disimpegno o Nascondersi.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "rogue_subclass",
+     "name": "Sottoclasse del ladro",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "steady_aim",
+     "name": "Mira ferma",
+     "description": "Come azione bonus ottieni Vantaggio al prossimo tiro per colpire del turno; solo se non ti sei mosso nel turno, e dopo l'uso la tua velocità è 0 fino alla fine del turno.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_rogue_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_rogue_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "ability_score_improvement_10",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_rogue_10",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_rogue_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_rogue_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "cunning_strike",
+     "name": "Colpo astuto",
+     "description": "Quando infliggi Attacco furtivo puoi rinunciare a dadi per aggiungere un effetto: Inciampo (1d6: tiro salvezza su Destrezza o prono, se Grande o più piccolo), Ritirata (1d6: muoviti fino a metà velocità senza attacchi di opportunità), Veleno (1d6: tiro salvezza su Costituzione o avvelenato per 1 minuto; servono sostanze da avvelenatore). CD 8 + Des + competenza.",
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "uncanny_dodge",
+     "name": "Schivata prodigiosa",
+     "description": "Con la reazione, quando un attaccante che vedi ti colpisce, dimezzi i danni (per difetto).",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "expertise_6",
+     "name": "Maestria",
+     "description": "Maestria in altre due abilità in cui hai competenza.",
+     "choices": [
+      {
+       "id": "rogue_expertise_6",
+       "label": "Maestria",
+       "count": 2,
+       "source": "expertise"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "evasion",
+     "name": "Elusione",
+     "description": "Se un effetto ti permette un tiro salvezza su Destrezza per dimezzare i danni, non subisci danni se lo superi e solo la metà se lo fallisci (non se sei incapacitato).",
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "reliable_talent",
+     "name": "Dote affidabile",
+     "description": "Nelle prove con un'abilità o uno strumento in cui hai competenza, un d20 da 9 in giù conta come 10.",
+     "origin": "srd"
+    },
+    {
+     "level": 11,
+     "id": "improved_cunning_strike",
+     "name": "Colpo astuto migliorato",
+     "description": "Puoi usare fino a due effetti di Colpo astuto, pagando i dadi di ciascuno.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "devious_strikes",
+     "name": "Colpi infidi",
+     "description": "Nuove opzioni di Colpo astuto: Atterramento (6d6: tiro salvezza su Costituzione o privo di sensi), Confusione (2d6: tiro salvezza su Costituzione o nel turno successivo solo muoversi, azione o azione bonus), Rabbuio (3d6: tiro salvezza su Destrezza o accecato).",
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "slippery_mind",
+     "name": "Mente sfuggente",
+     "description": "Competenza nei tiri salvezza su Saggezza e Carisma.",
+     "effects": [
+      {
+       "op": "grantSaveProficiency",
+       "abilities": [
+        "wis",
+        "cha"
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "elusive",
+     "name": "Inafferrabile",
+     "description": "Nessun tiro per colpire ha Vantaggio contro di te, a meno che tu sia incapacitato.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono dello spirito notturno.",
+     "choices": [
+      {
+       "id": "epic_boon_rogue",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "stroke_of_luck",
+     "name": "Colpo di fortuna",
+     "description": "Se fallisci una prova con d20 puoi trasformare il risultato in 20. Una volta per riposo breve o lungo.",
+     "usage": {
+      "uses": 1,
+      "recharge": "short_rest"
+     },
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "sneak_attack": [
+     "1d6",
+     "1d6",
+     "2d6",
+     "2d6",
+     "3d6",
+     "3d6",
+     "4d6",
+     "4d6",
+     "5d6",
+     "5d6",
+     "6d6",
+     "6d6",
+     "7d6",
+     "7d6",
+     "8d6",
+     "8d6",
+     "9d6",
+     "9d6",
+     "10d6",
+     "10d6"
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "sorcerer",
+   "name": "Stregone",
+   "description": "Incantatore dalla magia innata: punti stregoneria, Metamagia e Stregoneria innata.",
+   "hitDie": 6,
+   "primaryAbility": [
+    "cha"
+   ],
+   "saves": [
+    "con",
+    "cha"
+   ],
+   "multiclassRequirement": "ability:cha>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "arcana",
+     "deception",
+     "insight",
+     "intimidation",
+     "persuasion",
+     "religion"
+    ]
+   },
+   "armorTraining": [],
+   "weaponProficiency": [
+    "simple"
+   ],
+   "caster": "full",
+   "spellAbility": "cha",
+   "spellList": "sorcerer",
+   "spellSlots": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     1,
+     1
+    ]
+   ],
+   "multiclass": {
+    "weapons": [],
+    "armor": [],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "spear",
+       "qty": 1
+      },
+      {
+       "item": "dagger",
+       "qty": 2
+      },
+      {
+       "item": "arcane_focus_crystal",
+       "qty": 1
+      },
+      {
+       "item": "dungeoneers_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 28
+    },
+    "B": {
+     "items": [],
+     "gp": 50
+    }
+   },
+   "choices": [
+    {
+     "id": "sorcerer_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "arcana",
+       "name": "Arcano",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "arcana"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "deception",
+       "name": "Inganno",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "deception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intimidation",
+       "name": "Intimidire",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "intimidation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "persuasion",
+       "name": "Persuasione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "persuasion"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "name": "Religione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "religion"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "sorcerer_cantrips",
+     "label": "Trucchetti",
+     "count": 1,
+     "countFrom": "cantrips",
+     "source": "cantrips:sorcerer"
+    },
+    {
+     "id": "sorcerer_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:sorcerer"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "spellcasting",
+     "name": "Incantesimi",
+     "description": "Lanci incantesimi da stregone con Carisma, usando un focus arcano. Conosci 4 trucchetti (altri al 4° e 10°) e prepari incantesimi (colonna Incantesimi preparati) dalla lista dello stregone; dopo un riposo lungo puoi sostituirne uno. Gli slot tornano con un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "innate_sorcery",
+     "name": "Stregoneria innata",
+     "description": "Come azione bonus per 1 minuto: la CD degli incantesimi da stregone sale di 1 e hai Vantaggio ai tiri per colpire degli incantesimi. Due usi, tornano con un riposo lungo.",
+     "usage": {
+      "uses": 2,
+      "recharge": "long_rest"
+     },
+     "activation": {
+      "resource": "innate_sorcery",
+      "duration": "1 minuto"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "font_of_magic",
+     "name": "Fonte di magia",
+     "description": "Hai punti stregoneria (colonna Punti stregoneria; tornano con un riposo lungo). Puoi convertire slot in punti (punti = livello dello slot, senza azione) e creare slot con un'azione bonus (costo: 1° 2 punti, 2° 3, 3° 5, 4° 6, 5° 7; livello da stregone minimo 2, 3, 5, 7, 9; gli slot creati svaniscono con un riposo lungo).",
+     "usage": {
+      "uses": {
+       "table": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+       ]
+      },
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "metamagic",
+     "name": "Metamagia",
+     "description": "Ottieni due opzioni di Metamagia (altre due al 10° e al 17° livello): le usi spendendo punti stregoneria, una per incantesimo (salvo diversa indicazione). A ogni livello da stregone puoi sostituirne una.",
+     "choices": [
+      {
+       "id": "sorcerer_metamagic_2",
+       "label": "Metamagia",
+       "count": 2,
+       "options": [
+        {
+         "id": "subtle_spell",
+         "name": "Incantesimo celato",
+         "description": "Lanci un incantesimo senza componenti verbali, somatiche o materiali (tranne quelle consumate o con costo).",
+         "cost": 1
+        },
+        {
+         "id": "distant_spell",
+         "name": "Incantesimo distante",
+         "description": "Raddoppia la gittata di un incantesimo di 1,5 m o più; un incantesimo a contatto passa a 9 m.",
+         "cost": 1
+        },
+        {
+         "id": "extended_spell",
+         "name": "Incantesimo esteso",
+         "description": "Raddoppia la durata di un incantesimo di 1 minuto o più (max 24 ore); Vantaggio ai tiri per mantenere la concentrazione.",
+         "cost": 1
+        },
+        {
+         "id": "heightened_spell",
+         "name": "Incantesimo intensificato",
+         "description": "Un bersaglio ha Svantaggio ai tiri salvezza contro l'incantesimo.",
+         "cost": 2
+        },
+        {
+         "id": "seeking_spell",
+         "name": "Incantesimo mirato",
+         "description": "Se manchi con il tiro per colpire di un incantesimo, ritiri il d20 (usi il nuovo risultato); si può combinare con un'altra opzione.",
+         "cost": 1
+        },
+        {
+         "id": "empowered_spell",
+         "name": "Incantesimo potenziato",
+         "description": "Ritiri fino a Carisma dadi di danno di un incantesimo (minimo 1); si può combinare con un'altra opzione.",
+         "cost": 1
+        },
+        {
+         "id": "careful_spell",
+         "name": "Incantesimo preciso",
+         "description": "Proteggi fino a Carisma creature (minimo 1): superano automaticamente il tiro salvezza e non subiscono danni neanche dimezzati.",
+         "cost": 1
+        },
+        {
+         "id": "twinned_spell",
+         "name": "Incantesimo raddoppiato",
+         "description": "Per un incantesimo che si potenzia con slot più alti per colpire un bersaglio in più, il livello effettivo aumenta di 1.",
+         "cost": 1
+        },
+        {
+         "id": "quickened_spell",
+         "name": "Incantesimo rapido",
+         "description": "Un incantesimo di 1 azione si lancia con 1 azione bonus (se non hai già lanciato un incantesimo di 1° livello o superiore nel turno).",
+         "cost": 2
+        },
+        {
+         "id": "transmuted_spell",
+         "name": "Incantesimo trasmutato",
+         "description": "Cambi il tipo di danno di un incantesimo tra acido, freddo, fulmine, fuoco, tuono e veleno.",
+         "cost": 1
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "sorcerer_subclass",
+     "name": "Sottoclasse dello stregone",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_sorcerer_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_sorcerer_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_sorcerer_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_sorcerer_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "sorcerous_restoration",
+     "name": "Ripristino stregonesco",
+     "description": "Con un riposo breve recuperi punti stregoneria fino a metà del tuo livello da stregone (per difetto). Una volta per riposo lungo.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "sorcery_incarnate",
+     "name": "Stregoneria incarnata",
+     "description": "Se hai finito gli usi di Stregoneria innata puoi attivarla spendendo 2 punti stregoneria (azione bonus); mentre è attiva puoi usare fino a due opzioni di Metamagia per incantesimo.",
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "metamagic_10",
+     "name": "Metamagia",
+     "description": "Altre due opzioni di Metamagia.",
+     "choices": [
+      {
+       "id": "sorcerer_metamagic_10",
+       "label": "Metamagia",
+       "count": 2,
+       "options": [
+        {
+         "id": "subtle_spell",
+         "name": "Incantesimo celato",
+         "description": "Lanci un incantesimo senza componenti verbali, somatiche o materiali (tranne quelle consumate o con costo).",
+         "cost": 1
+        },
+        {
+         "id": "distant_spell",
+         "name": "Incantesimo distante",
+         "description": "Raddoppia la gittata di un incantesimo di 1,5 m o più; un incantesimo a contatto passa a 9 m.",
+         "cost": 1
+        },
+        {
+         "id": "extended_spell",
+         "name": "Incantesimo esteso",
+         "description": "Raddoppia la durata di un incantesimo di 1 minuto o più (max 24 ore); Vantaggio ai tiri per mantenere la concentrazione.",
+         "cost": 1
+        },
+        {
+         "id": "heightened_spell",
+         "name": "Incantesimo intensificato",
+         "description": "Un bersaglio ha Svantaggio ai tiri salvezza contro l'incantesimo.",
+         "cost": 2
+        },
+        {
+         "id": "seeking_spell",
+         "name": "Incantesimo mirato",
+         "description": "Se manchi con il tiro per colpire di un incantesimo, ritiri il d20 (usi il nuovo risultato); si può combinare con un'altra opzione.",
+         "cost": 1
+        },
+        {
+         "id": "empowered_spell",
+         "name": "Incantesimo potenziato",
+         "description": "Ritiri fino a Carisma dadi di danno di un incantesimo (minimo 1); si può combinare con un'altra opzione.",
+         "cost": 1
+        },
+        {
+         "id": "careful_spell",
+         "name": "Incantesimo preciso",
+         "description": "Proteggi fino a Carisma creature (minimo 1): superano automaticamente il tiro salvezza e non subiscono danni neanche dimezzati.",
+         "cost": 1
+        },
+        {
+         "id": "twinned_spell",
+         "name": "Incantesimo raddoppiato",
+         "description": "Per un incantesimo che si potenzia con slot più alti per colpire un bersaglio in più, il livello effettivo aumenta di 1.",
+         "cost": 1
+        },
+        {
+         "id": "quickened_spell",
+         "name": "Incantesimo rapido",
+         "description": "Un incantesimo di 1 azione si lancia con 1 azione bonus (se non hai già lanciato un incantesimo di 1° livello o superiore nel turno).",
+         "cost": 2
+        },
+        {
+         "id": "transmuted_spell",
+         "name": "Incantesimo trasmutato",
+         "description": "Cambi il tipo di danno di un incantesimo tra acido, freddo, fulmine, fuoco, tuono e veleno.",
+         "cost": 1
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 17,
+     "id": "metamagic_17",
+     "name": "Metamagia",
+     "description": "Altre due opzioni di Metamagia.",
+     "choices": [
+      {
+       "id": "sorcerer_metamagic_17",
+       "label": "Metamagia",
+       "count": 2,
+       "options": [
+        {
+         "id": "subtle_spell",
+         "name": "Incantesimo celato",
+         "description": "Lanci un incantesimo senza componenti verbali, somatiche o materiali (tranne quelle consumate o con costo).",
+         "cost": 1
+        },
+        {
+         "id": "distant_spell",
+         "name": "Incantesimo distante",
+         "description": "Raddoppia la gittata di un incantesimo di 1,5 m o più; un incantesimo a contatto passa a 9 m.",
+         "cost": 1
+        },
+        {
+         "id": "extended_spell",
+         "name": "Incantesimo esteso",
+         "description": "Raddoppia la durata di un incantesimo di 1 minuto o più (max 24 ore); Vantaggio ai tiri per mantenere la concentrazione.",
+         "cost": 1
+        },
+        {
+         "id": "heightened_spell",
+         "name": "Incantesimo intensificato",
+         "description": "Un bersaglio ha Svantaggio ai tiri salvezza contro l'incantesimo.",
+         "cost": 2
+        },
+        {
+         "id": "seeking_spell",
+         "name": "Incantesimo mirato",
+         "description": "Se manchi con il tiro per colpire di un incantesimo, ritiri il d20 (usi il nuovo risultato); si può combinare con un'altra opzione.",
+         "cost": 1
+        },
+        {
+         "id": "empowered_spell",
+         "name": "Incantesimo potenziato",
+         "description": "Ritiri fino a Carisma dadi di danno di un incantesimo (minimo 1); si può combinare con un'altra opzione.",
+         "cost": 1
+        },
+        {
+         "id": "careful_spell",
+         "name": "Incantesimo preciso",
+         "description": "Proteggi fino a Carisma creature (minimo 1): superano automaticamente il tiro salvezza e non subiscono danni neanche dimezzati.",
+         "cost": 1
+        },
+        {
+         "id": "twinned_spell",
+         "name": "Incantesimo raddoppiato",
+         "description": "Per un incantesimo che si potenzia con slot più alti per colpire un bersaglio in più, il livello effettivo aumenta di 1.",
+         "cost": 1
+        },
+        {
+         "id": "quickened_spell",
+         "name": "Incantesimo rapido",
+         "description": "Un incantesimo di 1 azione si lancia con 1 azione bonus (se non hai già lanciato un incantesimo di 1° livello o superiore nel turno).",
+         "cost": 2
+        },
+        {
+         "id": "transmuted_spell",
+         "name": "Incantesimo trasmutato",
+         "description": "Cambi il tipo di danno di un incantesimo tra acido, freddo, fulmine, fuoco, tuono e veleno.",
+         "cost": 1
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono del viaggio dimensionale.",
+     "choices": [
+      {
+       "id": "epic_boon_sorcerer",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "arcane_apotheosis",
+     "name": "Apoteosi arcana",
+     "description": "Con Stregoneria innata attiva puoi usare un'opzione di Metamagia per turno senza spendere punti stregoneria.",
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "sorcery_points": [
+     0,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ],
+    "cantrips": [
+     4,
+     4,
+     4,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     6,
+     6,
+     6,
+     6,
+     6,
+     6,
+     6,
+     6,
+     6,
+     6,
+     6
+    ],
+    "prepared": [
+     2,
+     4,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     17,
+     18,
+     18,
+     19,
+     20,
+     21,
+     22
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "warlock",
+   "name": "Warlock",
+   "description": "Incantatore legato a un patrono: Magia del patto con pochi slot potenti, Suppliche occulte e Arcanum mistico.",
+   "hitDie": 8,
+   "primaryAbility": [
+    "cha"
+   ],
+   "saves": [
+    "wis",
+    "cha"
+   ],
+   "multiclassRequirement": "ability:cha>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "arcana",
+     "deception",
+     "history",
+     "intimidation",
+     "investigation",
+     "nature",
+     "religion"
+    ]
+   },
+   "armorTraining": [
+    "light"
+   ],
+   "weaponProficiency": [
+    "simple"
+   ],
+   "caster": "pact",
+   "spellAbility": "cha",
+   "spellList": "warlock",
+   "pactSlots": [
+    {
+     "count": 1,
+     "level": 1
+    },
+    {
+     "count": 2,
+     "level": 1
+    },
+    {
+     "count": 2,
+     "level": 2
+    },
+    {
+     "count": 2,
+     "level": 2
+    },
+    {
+     "count": 2,
+     "level": 3
+    },
+    {
+     "count": 2,
+     "level": 3
+    },
+    {
+     "count": 2,
+     "level": 4
+    },
+    {
+     "count": 2,
+     "level": 4
+    },
+    {
+     "count": 2,
+     "level": 5
+    },
+    {
+     "count": 2,
+     "level": 5
+    },
+    {
+     "count": 3,
+     "level": 5
+    },
+    {
+     "count": 3,
+     "level": 5
+    },
+    {
+     "count": 3,
+     "level": 5
+    },
+    {
+     "count": 3,
+     "level": 5
+    },
+    {
+     "count": 3,
+     "level": 5
+    },
+    {
+     "count": 3,
+     "level": 5
+    },
+    {
+     "count": 4,
+     "level": 5
+    },
+    {
+     "count": 4,
+     "level": 5
+    },
+    {
+     "count": 4,
+     "level": 5
+    },
+    {
+     "count": 4,
+     "level": 5
+    }
+   ],
+   "multiclass": {
+    "weapons": [],
+    "armor": [
+     "light"
+    ],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "leather_armor",
+       "qty": 1
+      },
+      {
+       "item": "sickle",
+       "qty": 1
+      },
+      {
+       "item": "dagger",
+       "qty": 2
+      },
+      {
+       "item": "arcane_focus_orb",
+       "qty": 1
+      },
+      {
+       "item": "book",
+       "qty": 1
+      },
+      {
+       "item": "scholars_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 15
+    },
+    "B": {
+     "items": [],
+     "gp": 100
+    }
+   },
+   "choices": [
+    {
+     "id": "warlock_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "arcana",
+       "name": "Arcano",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "arcana"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "deception",
+       "name": "Inganno",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "deception"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "name": "Storia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "history"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "intimidation",
+       "name": "Intimidire",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "intimidation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigation",
+       "name": "Indagare",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "investigation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nature",
+       "name": "Natura",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "nature"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "name": "Religione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "religion"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "warlock_cantrips",
+     "label": "Trucchetti",
+     "count": 1,
+     "countFrom": "cantrips",
+     "source": "cantrips:warlock"
+    },
+    {
+     "id": "warlock_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:warlock"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "eldritch_invocations",
+     "name": "Suppliche occulte",
+     "description": "Ottieni suppliche a scelta (colonna Suppliche occulte), ognuna con eventuali prerequisiti di livello o di Patto; a ogni livello da warlock puoi sostituirne una (non se è prerequisito di un'altra). Non si sceglie due volte la stessa, salvo dove indicato.",
+     "choices": [
+      {
+       "id": "warlock_invocations",
+       "label": "Suppliche occulte",
+       "countFrom": "invocations",
+       "options": [
+        {
+         "id": "armor_of_shadows",
+         "name": "Armatura delle ombre",
+         "description": "Puoi lanciare Armatura magica su te stesso senza slot."
+        },
+        {
+         "id": "otherworldly_leap",
+         "name": "Balzo ultraterreno",
+         "description": "Puoi lanciare Saltare su te stesso senza slot.",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "lessons_of_the_first_ones",
+         "name": "Conoscenze degli Antichi",
+         "description": "Ottieni un talento Origini a scelta. Ripetibile (talento diverso).",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "agonizing_blast",
+         "name": "Deflagrazione agonizzante",
+         "description": "Scegli un trucchetto da warlock che infligge danni: aggiungi Carisma ai suoi danni. Ripetibile (trucchetto diverso).",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "repelling_blast",
+         "name": "Deflagrazione respingente",
+         "description": "Scegli un trucchetto con tiro per colpire: se colpisci una creatura Grande o più piccola puoi spingerla fino a 3 m. Ripetibile (trucchetto diverso).",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "gift_of_the_depths",
+         "name": "Dono degli abissi",
+         "description": "Respiri sott'acqua e hai velocità di nuoto pari alla tua; Respirare sott'acqua una volta per riposo lungo senza slot.",
+         "requires": "classLevel:warlock>=5"
+        },
+        {
+         "id": "gift_of_the_protectors",
+         "name": "Dono del protettore",
+         "description": "Il Libro delle Ombre ha una pagina su cui le creature scrivono il proprio nome: la prima volta che una scende a 0 PF resta a 1 (una volta per riposo lungo).",
+         "requires": "classLevel:warlock>=9 && hasFeature:pact_of_the_tome"
+        },
+        {
+         "id": "investment_of_the_chain_master",
+         "name": "Investitura del Signore delle Catene",
+         "description": "Il famiglio di Trova famiglio ottiene volo o nuoto 12 m, attacco rapido, danni necrotici o radiosi, la tua CD e resistenza a un danno (reazione).",
+         "requires": "classLevel:warlock>=5 && hasFeature:pact_of_the_chain"
+        },
+        {
+         "id": "thirsting_blade",
+         "name": "Lama assetata",
+         "description": "Attacco extra solo con l'arma del patto: attacchi due volte con l'azione Attacco.",
+         "requires": "classLevel:warlock>=5 && hasFeature:pact_of_the_blade"
+        },
+        {
+         "id": "devouring_blade",
+         "name": "Lama divoratrice",
+         "description": "L'Attacco extra di Lama assetata dà due attacchi aggiuntivi invece di uno.",
+         "requires": "classLevel:warlock>=12 && hasFeature:thirsting_blade"
+        },
+        {
+         "id": "eldritch_spear",
+         "name": "Lancia occulta",
+         "description": "Scegli un trucchetto che infligge danni con gittata di 3 m o più: la gittata aumenta di 9 m per ogni livello da warlock. Ripetibile (trucchetto diverso).",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "master_of_myriad_forms",
+         "name": "Maestro di mille forme",
+         "description": "Puoi lanciare Alterare se stesso senza slot.",
+         "requires": "classLevel:warlock>=5"
+        },
+        {
+         "id": "mask_of_many_faces",
+         "name": "Maschera dei molti volti",
+         "description": "Puoi lanciare Camuffare se stesso senza slot.",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "eldritch_mind",
+         "name": "Mente occulta",
+         "description": "Vantaggio ai tiri salvezza su Costituzione per mantenere la concentrazione."
+        },
+        {
+         "id": "ascendant_step",
+         "name": "Passo ascendente",
+         "description": "Puoi lanciare Levitazione su te stesso senza slot.",
+         "requires": "classLevel:warlock>=5"
+        },
+        {
+         "id": "pact_of_the_chain",
+         "name": "Patto della catena",
+         "description": "Impari Trova famiglio e lo lanci come azione di Magia senza slot, con forme speciali (imp, pseudodrago, quasit, scheletro, sfinge della meraviglia, spiritello, serpente velenoso); un attacco del famiglio al posto di uno tuo."
+        },
+        {
+         "id": "pact_of_the_blade",
+         "name": "Patto della lama",
+         "description": "Azione bonus: evochi un'arma del patto (o leghi un'arma magica): hai competenza, la usi come focus, puoi usare Carisma per colpire e per i danni e scegliere il tipo di danno (necrotico, psichico, radioso o normale)."
+        },
+        {
+         "id": "pact_of_the_tome",
+         "name": "Patto del tomo",
+         "description": "Dopo un riposo breve o lungo evochi un Libro delle Ombre con tre trucchetti e due rituali di 1° livello di qualsiasi lista; sono preparati e valgono come da warlock; il libro è un focus."
+        },
+        {
+         "id": "eldritch_smite",
+         "name": "Punizione occulta",
+         "description": "Una volta per turno, colpendo con l'arma del patto spendi uno slot del Patto: 1d8 danni da forza + 1d8 per livello dello slot; un bersaglio Enorme o più piccolo cade prono.",
+         "requires": "classLevel:warlock>=5 && hasFeature:pact_of_the_blade"
+        },
+        {
+         "id": "gaze_of_two_minds",
+         "name": "Sguardo delle due menti",
+         "description": "Azione bonus: tocchi una creatura consenziente e percepisci con i suoi sensi; puoi mantenere il legame con azioni bonus e lanciare incantesimi dal suo spazio se entro 18 m.",
+         "requires": "classLevel:warlock>=5"
+        },
+        {
+         "id": "lifedrinker",
+         "name": "Succhiavita",
+         "description": "Una volta per turno, colpendo con l'arma del patto: +1d6 danni necrotici, psichici o radiosi; puoi spendere un Dado Vita per recuperare PF pari al tiro + Costituzione.",
+         "requires": "classLevel:warlock>=9 && hasFeature:pact_of_the_blade"
+        },
+        {
+         "id": "whispers_of_the_grave",
+         "name": "Sussurri dalla tomba",
+         "description": "Puoi lanciare Parlare con i morti senza slot.",
+         "requires": "classLevel:warlock>=7"
+        },
+        {
+         "id": "one_with_shadows",
+         "name": "Tutt'uno con le ombre",
+         "description": "In oscurità o luce fioca puoi lanciare Invisibilità su te stesso senza slot.",
+         "requires": "classLevel:warlock>=5"
+        },
+        {
+         "id": "fiendish_vigor",
+         "name": "Vigore immondo",
+         "description": "Puoi lanciare Vita falsata su te stesso senza slot, ottenendo sempre il massimo dei PF temporanei.",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "visions_of_distant_realms",
+         "name": "Visione dei Reami Lontani",
+         "description": "Puoi lanciare Occhio arcano senza slot.",
+         "requires": "classLevel:warlock>=9"
+        },
+        {
+         "id": "misty_visions",
+         "name": "Visioni velate",
+         "description": "Puoi lanciare Immagine silenziosa senza slot.",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "devils_sight",
+         "name": "Vista del diavolo",
+         "description": "Vedi normalmente con luce fioca e oscurità, anche magica, entro 36 m.",
+         "requires": "classLevel:warlock>=2"
+        },
+        {
+         "id": "witch_sight",
+         "name": "Vista stregata",
+         "description": "Vista pura entro 9 m.",
+         "requires": "classLevel:warlock>=15"
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "pact_magic",
+     "name": "Magia del patto",
+     "description": "Lanci incantesimi da warlock con Carisma, usando un focus arcano. Conosci 2 trucchetti (altri al 4° e 10°) e prepari incantesimi (colonna Incantesimi preparati) dalla lista del warlock, di livello non superiore a quello degli slot del Patto. Gli slot (tutti dello stesso livello, colonne Slot incantesimo e Livello di slot) tornano con un riposo breve o lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "magical_cunning",
+     "name": "Scaltrezza magica",
+     "description": "Con un rito di 1 minuto recuperi slot del Patto spesi fino a metà del massimo (per eccesso). Una volta per riposo lungo.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "warlock_subclass",
+     "name": "Sottoclasse del warlock",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_warlock_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_warlock_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_warlock_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_warlock_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "contact_patron",
+     "name": "Contatta patrono",
+     "description": "Contattare altri piani è sempre preparato: puoi lanciarlo senza slot (supera automaticamente il tiro salvezza), una volta per riposo lungo.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "contact_other_plane",
+       "mode": "alwaysPrepared",
+       "freeCast": {
+        "uses": 1,
+        "recharge": "long_rest"
+       }
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 11,
+     "id": "mystic_arcanum",
+     "name": "Arcanum mistico",
+     "description": "Scegli un incantesimo da warlock di 6° livello da lanciare una volta senza slot per riposo lungo. Altri arcanum al 13° (7° livello), 15° (8°) e 17° (9°); a ogni livello puoi sostituirne uno.",
+     "choices": [
+      {
+       "id": "warlock_arcanum_6",
+       "label": "Arcanum (6° livello)",
+       "count": 1,
+       "source": "spells:warlock",
+       "filter": {
+        "level": 6
+       }
+      }
+     ],
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 13,
+     "id": "mystic_arcanum_7",
+     "name": "Arcanum mistico",
+     "description": "Incantesimo da warlock di 7° livello, una volta per riposo lungo.",
+     "choices": [
+      {
+       "id": "warlock_arcanum_7",
+       "label": "Arcanum (7° livello)",
+       "count": 1,
+       "source": "spells:warlock",
+       "filter": {
+        "level": 7
+       }
+      }
+     ],
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "mystic_arcanum_8",
+     "name": "Arcanum mistico",
+     "description": "Incantesimo da warlock di 8° livello, una volta per riposo lungo.",
+     "choices": [
+      {
+       "id": "warlock_arcanum_8",
+       "label": "Arcanum (8° livello)",
+       "count": 1,
+       "source": "spells:warlock",
+       "filter": {
+        "level": 8
+       }
+      }
+     ],
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 17,
+     "id": "mystic_arcanum_9",
+     "name": "Arcanum mistico",
+     "description": "Incantesimo da warlock di 9° livello, una volta per riposo lungo.",
+     "choices": [
+      {
+       "id": "warlock_arcanum_9",
+       "label": "Arcanum (9° livello)",
+       "count": 1,
+       "source": "spells:warlock",
+       "filter": {
+        "level": 9
+       }
+      }
+     ],
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono del fato.",
+     "choices": [
+      {
+       "id": "epic_boon_warlock",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "eldritch_master",
+     "name": "Maestro dell'occulto",
+     "description": "Usando Scaltrezza magica recuperi tutti gli slot del Patto spesi.",
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "invocations": [
+     1,
+     3,
+     3,
+     3,
+     5,
+     5,
+     6,
+     6,
+     7,
+     7,
+     7,
+     8,
+     8,
+     8,
+     9,
+     9,
+     9,
+     10,
+     10,
+     10
+    ],
+    "cantrips": [
+     2,
+     2,
+     2,
+     3,
+     3,
+     3,
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4
+    ],
+    "prepared": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     10,
+     11,
+     11,
+     12,
+     12,
+     13,
+     13,
+     14,
+     14,
+     15,
+     15
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  },
+  {
+   "id": "wizard",
+   "name": "Mago",
+   "description": "Studioso della magia arcana: libro degli incantesimi, Recupero arcano e la più vasta lista di incantesimi.",
+   "hitDie": 6,
+   "primaryAbility": [
+    "int"
+   ],
+   "saves": [
+    "int",
+    "wis"
+   ],
+   "multiclassRequirement": "ability:int>=13",
+   "skillChoices": {
+    "count": 2,
+    "from": [
+     "arcana",
+     "history",
+     "insight",
+     "investigation",
+     "medicine",
+     "nature",
+     "religion"
+    ]
+   },
+   "armorTraining": [],
+   "weaponProficiency": [
+    "simple"
+   ],
+   "caster": "full",
+   "spellAbility": "int",
+   "spellList": "wizard",
+   "spellSlots": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3
+    ],
+    [
+     4,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     1,
+     1,
+     1
+    ],
+    [
+     4,
+     3,
+     3,
+     3,
+     3,
+     2,
+     2,
+     1,
+     1
+    ]
+   ],
+   "multiclass": {
+    "weapons": [],
+    "armor": [],
+    "skills": 0,
+    "toolChoices": 0,
+    "tools": []
+   },
+   "equipment": {
+    "A": {
+     "items": [
+      {
+       "item": "dagger",
+       "qty": 2
+      },
+      {
+       "item": "arcane_focus_staff",
+       "qty": 1
+      },
+      {
+       "item": "robe",
+       "qty": 1
+      },
+      {
+       "item": "$spellbook",
+       "qty": 1
+      },
+      {
+       "item": "scholars_pack",
+       "qty": 1
+      }
+     ],
+     "gp": 5
+    },
+    "B": {
+     "items": [],
+     "gp": 55
+    }
+   },
+   "choices": [
+    {
+     "id": "wizard_skills",
+     "label": "Abilità di classe",
+     "count": 2,
+     "options": [
+      {
+       "id": "arcana",
+       "name": "Arcano",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "arcana"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "history",
+       "name": "Storia",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "history"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "insight",
+       "name": "Intuizione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "insight"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "investigation",
+       "name": "Indagare",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "investigation"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "medicine",
+       "name": "Medicina",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "medicine"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "nature",
+       "name": "Natura",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "nature"
+         ]
+        }
+       ]
+      },
+      {
+       "id": "religion",
+       "name": "Religione",
+       "effects": [
+        {
+         "op": "grantSkillProficiency",
+         "skills": [
+          "religion"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "wizard_cantrips",
+     "label": "Trucchetti",
+     "count": 1,
+     "countFrom": "cantrips",
+     "source": "cantrips:wizard"
+    },
+    {
+     "id": "wizard_spellbook",
+     "label": "Libro degli incantesimi",
+     "count": 1,
+     "countFormula": "4 + 2 * classLevel:wizard",
+     "source": "spells:wizard"
+    },
+    {
+     "id": "wizard_prepared",
+     "label": "Incantesimi preparati",
+     "count": 1,
+     "countFrom": "prepared",
+     "source": "spells:wizard"
+    }
+   ],
+   "features": [
+    {
+     "level": 1,
+     "id": "spellcasting",
+     "name": "Incantesimi",
+     "description": "Lanci incantesimi da mago con Intelligenza, usando un focus arcano o il libro. Conosci 3 trucchetti (altri al 4° e 10°; a ogni riposo lungo puoi cambiarne uno). Il libro degli incantesimi parte con 6 incantesimi di 1° livello (+2 a ogni livello); prepari incantesimi (colonna Incantesimi preparati) dal libro e dopo un riposo lungo puoi cambiarli. Gli slot tornano con un riposo lungo.",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "ritual_adept",
+     "name": "Adepto dei rituali",
+     "description": "Puoi lanciare come rituale qualsiasi incantesimo con descrittore rituale presente nel tuo libro, senza prepararlo (leggendo il libro).",
+     "origin": "srd"
+    },
+    {
+     "level": 1,
+     "id": "arcane_recovery",
+     "name": "Recupero arcano",
+     "description": "Dopo un riposo breve recuperi slot spesi di livello totale pari a metà del livello da mago (per eccesso), nessuno di 6° livello o superiore. Una volta per riposo lungo.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 2,
+     "id": "scholar",
+     "name": "Studioso",
+     "description": "Ottieni Maestria in una abilità in cui hai competenza tra Arcano, Indagare, Medicina, Natura, Religione e Storia.",
+     "choices": [
+      {
+       "id": "wizard_scholar",
+       "label": "Maestria",
+       "count": 1,
+       "options": [
+        {
+         "id": "arcana",
+         "name": "Arcano",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "arcana"
+           ],
+           "expertise": true
+          }
+         ]
+        },
+        {
+         "id": "investigation",
+         "name": "Indagare",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "investigation"
+           ],
+           "expertise": true
+          }
+         ]
+        },
+        {
+         "id": "medicine",
+         "name": "Medicina",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "medicine"
+           ],
+           "expertise": true
+          }
+         ]
+        },
+        {
+         "id": "nature",
+         "name": "Natura",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "nature"
+           ],
+           "expertise": true
+          }
+         ]
+        },
+        {
+         "id": "religion",
+         "name": "Religione",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "religion"
+           ],
+           "expertise": true
+          }
+         ]
+        },
+        {
+         "id": "history",
+         "name": "Storia",
+         "effects": [
+          {
+           "op": "grantSkillProficiency",
+           "skills": [
+            "history"
+           ],
+           "expertise": true
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "wizard_subclass",
+     "name": "Sottoclasse del mago",
+     "description": "Scegli una sottoclasse; ottieni i suoi privilegi ai livelli indicati.",
+     "origin": "srd"
+    },
+    {
+     "level": 4,
+     "id": "ability_score_improvement_4",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_wizard_4",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 8,
+     "id": "ability_score_improvement_8",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_wizard_8",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 12,
+     "id": "ability_score_improvement_12",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_wizard_12",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 16,
+     "id": "ability_score_improvement_16",
+     "name": "Aumento dei punteggi di caratteristica",
+     "description": "Ottieni il talento Aumento dei punteggi di caratteristica o un altro talento di cui hai i prerequisiti.",
+     "choices": [
+      {
+       "id": "asi_wizard_16",
+       "label": "Aumento dei punteggi di caratteristica",
+       "count": 1,
+       "source": "feats:general"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 5,
+     "id": "memorize_spell",
+     "name": "Memorizzare incantesimi",
+     "description": "Con un riposo breve puoi studiare il libro e sostituire un incantesimo preparato di 1° livello o superiore con un altro dal libro.",
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "spell_mastery",
+     "name": "Maestria negli incantesimi",
+     "description": "Scegli dal libro un incantesimo di 1° e uno di 2° livello con tempo di lancio di 1 azione: sono sempre preparati e li lanci al livello più basso senza slot. Dopo un riposo lungo puoi cambiarne uno.",
+     "origin": "srd"
+    },
+    {
+     "level": 19,
+     "id": "epic_boon",
+     "name": "Dono epico",
+     "description": "Ottieni un Dono epico o un altro talento di cui hai i prerequisiti. Consigliato: Dono del richiamo degli incantesimi.",
+     "choices": [
+      {
+       "id": "epic_boon_wizard",
+       "label": "Dono epico",
+       "count": 1,
+       "source": "feats:epic_boon"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "signature_spells",
+     "name": "Incantesimi personali",
+     "description": "Scegli due incantesimi di 3° livello del libro: sono sempre preparati e puoi lanciarli ciascuno una volta al 3° livello senza slot (si ricaricano con un riposo breve o lungo).",
+     "origin": "srd"
+    }
+   ],
+   "table": {
+    "cantrips": [
+     3,
+     3,
+     3,
+     4,
+     4,
+     4,
+     4,
+     4,
+     4,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5,
+     5
+    ],
+    "prepared": [
+     4,
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12,
+     14,
+     15,
+     16,
+     16,
+     17,
+     18,
+     19,
+     21,
+     22,
+     23,
+     24,
+     25
+    ]
+   },
+   "subclassLevel": 3,
+   "origin": "srd"
+  }
+ ]
+}
