@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import * as pdfjs from "pdfjs-dist/legacy/build/pdf.mjs";
 import { CC_BY_URL, DISCLAIMER, SRD_NOTICE } from "./attribution";
@@ -13,10 +13,13 @@ async function firstPages(path: string, n = 3) {
   return norm(t);
 }
 
+// I PDF dell'SRD (docs/srd) non sono nel repo: il confronto con la prima pagina gira solo se ci sono.
+const srdPdf = (lang: string) => `docs/srd/SRD_5.2.1_${lang}.pdf`;
+
 describe("attribuzioni: la dicitura CC-BY è quella dell'SRD", () => {
   for (const lang of ["it", "en"] as const) {
-    it(`la dicitura ${lang} coincide con la prima pagina del PDF SRD`, async () => {
-      expect(flat(await firstPages(`docs/srd/SRD_5.2.1_${lang}.pdf`))).toContain(flat(SRD_NOTICE[lang]));
+    it.skipIf(!existsSync(srdPdf(lang)))(`la dicitura ${lang} coincide con la prima pagina del PDF SRD`, async () => {
+      expect(flat(await firstPages(srdPdf(lang)))).toContain(flat(SRD_NOTICE[lang]));
     });
     it(`la dicitura e l'avviso ${lang} stanno in ATTRIBUTION.md e README.md`, () => {
       for (const f of ["ATTRIBUTION.md", "README.md"]) {

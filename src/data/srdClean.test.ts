@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { fixEnGlyphs, joinProse, leftoverOddChars } from "../../scripts/lib/srd-clean";
 import { pdfPages } from "../../scripts/lib/pdf-text";
@@ -44,7 +45,8 @@ describe("joinProse", () => {
   });
 });
 
-describe("PDF reali: nessun carattere corrotto residuo", () => {
+// I PDF dell'SRD (docs/srd) non sono nel repo: questi test girano solo se ci sono.
+describe.skipIf(!existsSync("docs/srd/SRD_5.2.1_en.pdf") || !existsSync("docs/srd/SRD_5.2.1_it.pdf"))("PDF reali: nessun carattere corrotto residuo", () => {
   it("EN: pagine 1-257 pulite dopo fixEnGlyphs (e sporche prima)", async () => {
     const raw = (await pdfPages("docs/srd/SRD_5.2.1_en.pdf")).slice(0, FIRST_MONSTER_PAGE - 1);
     const before = raw.filter((t) => leftoverOddChars(t).length).length;
