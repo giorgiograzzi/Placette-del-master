@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+.env
+*.log
+# PDF delle fonti (docs/srd) e PDF sparsi in data/: pesano decine di MB e non servono al build
+docs
+data/*.pdf
+# NON escludere data/ (dati di gioco che finiscono nel bundle)

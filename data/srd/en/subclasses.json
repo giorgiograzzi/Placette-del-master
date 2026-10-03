@@ -1,0 +1,1159 @@
+{
+ "kind": "subclasses",
+ "entries": [
+  {
+   "id": "berserker",
+   "classId": "barbarian",
+   "name": "Path of the Berserker",
+   "description": "Channel Rage into violent fury: extra damage, immunity to fear and charm, retaliation, and an intimidating presence.",
+   "features": [
+    {
+     "level": 3,
+     "id": "frenzy",
+     "name": "Frenzy",
+     "description": "If you use Reckless Attack while raging, the first target you hit on your turn with a Strength-based attack takes extra damage: roll a number of d6s equal to your Rage Damage bonus.",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "mindless_rage",
+     "name": "Mindless Rage",
+     "description": "You can't be Charmed or Frightened while raging; if you are when you enter your Rage, the condition ends.",
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "retaliation",
+     "name": "Retaliation",
+     "description": "When you take damage from a creature within 5 feet, you can use your Reaction to make one melee attack against it with a weapon or Unarmed Strike.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "intimidating_presence",
+     "name": "Intimidating Presence",
+     "description": "As a Bonus Action, each creature of your choice in a 30-foot Emanation must succeed on a Wisdom save (DC 8 + Strength + Proficiency) or be Frightened for 1 minute (repeats the save at the end of its turns). Once per Long Rest, or by expending a Rage use.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "lore",
+   "classId": "bard",
+   "name": "College of Lore",
+   "description": "Gathers lore and magical secrets from every source: extra proficiencies, cutting words, and magical discoveries.",
+   "features": [
+    {
+     "level": 3,
+     "id": "bonus_proficiencies",
+     "name": "Bonus Proficiencies",
+     "description": "You gain proficiency in three skills of your choice.",
+     "choices": [
+      {
+       "id": "lore_bonus_skills",
+       "label": "Skills",
+       "count": 3,
+       "source": "skills"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "cutting_words",
+     "name": "Cutting Words",
+     "description": "As a Reaction, when a creature within 60 feet makes a damage roll or succeeds on an ability check or attack roll, spend a Bardic Inspiration use and subtract the die roll from its result.",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "magical_discoveries",
+     "name": "Magical Discoveries",
+     "description": "You learn two spells (cantrips or of a level you have slots for) from the Cleric, Druid, and Wizard lists: they're always prepared and you can swap one whenever you gain a Bard level.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "peerless_skill",
+     "name": "Peerless Skill",
+     "description": "When you fail an ability check or attack roll you can spend a Bardic Inspiration use and add the die to the d20; if you still fail, the use isn't expended.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "life_domain",
+   "classId": "cleric",
+   "name": "Life Domain",
+   "description": "Positive energy and healing: always-prepared spells, boosted cures, and Preserve Life.",
+   "features": [
+    {
+     "level": 3,
+     "id": "disciple_of_life",
+     "name": "Disciple of Life",
+     "description": "When a spell you cast with a slot restores Hit Points, the creature regains additional Hit Points equal to 2 plus the slot's level.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "life_domain_spells",
+     "name": "Life Domain Spells",
+     "description": "Always-prepared spells: level 3 Aid, Bless, Cure Wounds, Lesser Restoration; 5 Mass Healing Word, Revivify; 7 Aura of Life, Death Ward; 9 Greater Restoration, Mass Cure Wounds.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "aid",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "bless",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "cure_wounds",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "lesser_restoration",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "mass_healing_word",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "revivify",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "aura_of_life",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=7"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "death_ward",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=7"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "greater_restoration",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=9"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "mass_cure_wounds",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:cleric>=9"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "preserve_life",
+     "name": "Preserve Life",
+     "description": "As a Magic action, expending a Channel Divinity use: restore Hit Points equal to five times your Cleric level, divided among Bloodied creatures within 30 feet (none above half its Hit Point maximum).",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "blessed_healer",
+     "name": "Blessed Healer",
+     "description": "When you heal others with a spell using a slot, you also regain 2 plus the slot's level Hit Points.",
+     "origin": "srd"
+    },
+    {
+     "level": 17,
+     "id": "supreme_healing",
+     "name": "Supreme Healing",
+     "description": "When you would roll dice to restore Hit Points with a spell or Channel Divinity, use the highest number possible for each die.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "land",
+   "classId": "druid",
+   "name": "Circle of the Land",
+   "description": "A mystic tied to a land type: circle spells, Land's Aid, and nature's protection.",
+   "features": [
+    {
+     "level": 3,
+     "id": "circle_of_the_land_spells",
+     "name": "Circle of the Land Spells",
+     "description": "After a Long Rest choose a land type (arid, polar, temperate, tropical): the spells listed for your level and lower are prepared. Arid: 3 Blur, Burning Hands, Fire Bolt; 5 Fireball; 7 Blight; 9 Wall of Stone. Polar: 3 Fog Cloud, Hold Person, Ray of Frost; 5 Sleet Storm; 7 Ice Storm; 9 Cone of Cold. Temperate: 3 Misty Step, Shocking Grasp, Sleep; 5 Lightning Bolt; 7 Freedom of Movement; 9 Tree Stride. Tropical: 3 Acid Splash, Ray of Sickness, Web; 5 Stinking Cloud; 7 Polymorph; 9 Insect Plague.",
+     "choices": [
+      {
+       "id": "land_type",
+       "label": "Land type",
+       "count": 1,
+       "options": [
+        {
+         "id": "arid",
+         "name": "Arid Land",
+         "effects": [
+          {
+           "op": "grantSpell",
+           "spell": "fire_bolt",
+           "mode": "cantrip",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "burning_hands",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "blur",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "fireball",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=5"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "blight",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=7"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "wall_of_stone",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=9"
+          },
+          {
+           "op": "resistance",
+           "types": [
+            "fire"
+           ],
+           "when": "classLevel:druid>=10"
+          }
+         ]
+        },
+        {
+         "id": "polar",
+         "name": "Polar Land",
+         "effects": [
+          {
+           "op": "grantSpell",
+           "spell": "hold_person",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "fog_cloud",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "ray_of_frost",
+           "mode": "cantrip",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "sleet_storm",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=5"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "ice_storm",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=7"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "cone_of_cold",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=9"
+          },
+          {
+           "op": "resistance",
+           "types": [
+            "cold"
+           ],
+           "when": "classLevel:druid>=10"
+          }
+         ]
+        },
+        {
+         "id": "temperate",
+         "name": "Temperate Land",
+         "effects": [
+          {
+           "op": "grantSpell",
+           "spell": "misty_step",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "sleep",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "shocking_grasp",
+           "mode": "cantrip",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "lightning_bolt",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=5"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "freedom_of_movement",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=7"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "tree_stride",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=9"
+          },
+          {
+           "op": "resistance",
+           "types": [
+            "lightning"
+           ],
+           "when": "classLevel:druid>=10"
+          }
+         ]
+        },
+        {
+         "id": "tropical",
+         "name": "Tropical Land",
+         "effects": [
+          {
+           "op": "grantSpell",
+           "spell": "acid_splash",
+           "mode": "cantrip",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "ray_of_sickness",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "web",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=3"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "stinking_cloud",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=5"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "polymorph",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=7"
+          },
+          {
+           "op": "grantSpell",
+           "spell": "insect_plague",
+           "mode": "alwaysPrepared",
+           "when": "classLevel:druid>=9"
+          },
+          {
+           "op": "resistance",
+           "types": [
+            "poison"
+           ],
+           "when": "classLevel:druid>=10"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "lands_aid",
+     "name": "Land's Aid",
+     "description": "Magic action, expending a Wild Shape use: choose a point within 60 feet; in a 10-foot-radius Sphere creatures of your choice make a Constitution save or take 2d6 Necrotic damage (half on a success), and one creature of your choice regains 2d6 Hit Points. 3d6 at level 10, 4d6 at level 14.",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "description": "You can cast one of your Circle spells without a slot (once per Long Rest); after a Short Rest you recover slots with a combined level up to half your Druid level (rounded up), none above level 6, once per Long Rest.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "natures_ward",
+     "name": "Nature's Ward",
+     "description": "You have Immunity to the Poisoned condition and Resistance to a damage type tied to your chosen land (arid: Fire; polar: Cold; temperate: Lightning; tropical: Poison).",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "natures_sanctuary",
+     "name": "Nature's Sanctuary",
+     "description": "Magic action, expending a Wild Shape use: spectral trees and vines fill a 15-foot Cube within 120 feet for 1 minute; you and your allies have Half Cover and allies gain the Resistance from Nature's Ward. Bonus Action: move the Cube up to 60 feet.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "champion",
+   "classId": "fighter",
+   "name": "Champion",
+   "description": "Physical excellence in combat: more frequent critical hits, athleticism, and resilience.",
+   "features": [
+    {
+     "level": 3,
+     "id": "improved_critical",
+     "name": "Improved Critical",
+     "description": "Weapon and Unarmed Strike attack rolls score a Critical Hit on a 19 or 20.",
+     "effects": [
+      {
+       "op": "critRange",
+       "min": 19
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "remarkable_athlete",
+     "name": "Remarkable Athlete",
+     "description": "Advantage on Initiative rolls and Strength (Athletics) checks. After you score a Critical Hit you can move up to half your Speed without Opportunity Attacks.",
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "additional_fighting_style",
+     "name": "Additional Fighting Style",
+     "description": "You gain another Fighting Style feat of your choice.",
+     "choices": [
+      {
+       "id": "fighter_additional_fighting_style",
+       "label": "Additional Fighting Style",
+       "count": 1,
+       "source": "feats:fighting_style"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "heroic_warrior",
+     "name": "Heroic Warrior",
+     "description": "During combat, you can give yourself Heroic Inspiration whenever you start your turn without it.",
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "superior_critical",
+     "name": "Superior Critical",
+     "description": "Weapon and Unarmed Strike attack rolls score a Critical Hit on an 18-20.",
+     "effects": [
+      {
+       "op": "critRange",
+       "min": 18
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "survivor",
+     "name": "Survivor",
+     "description": "Advantage on Death Saving Throws; a 18-20 counts as a 20. At the start of your turn, if you are Bloodied and have at least 1 Hit Point, you regain 5 + your Constitution modifier Hit Points.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "open_hand",
+   "classId": "monk",
+   "name": "Warrior of the Open Hand",
+   "description": "Master of unarmed combat: pushes, topples opponents, and heals themself.",
+   "features": [
+    {
+     "level": 3,
+     "id": "open_hand_technique",
+     "name": "Open Hand Technique",
+     "description": "When you hit with an attack from Flurry of Blows you can impose one effect: Addle (no Opportunity Attacks until its next turn), Push (Strength save or pushed up to 15 feet), or Topple (Dexterity save or Prone).",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "wholeness_of_body",
+     "name": "Wholeness of Body",
+     "description": "As a Bonus Action roll your Martial Arts die and regain Hit Points equal to the roll + your Wisdom modifier (minimum 1). Uses equal your Wisdom modifier (minimum 1) per Long Rest.",
+     "usage": {
+      "uses": "max(1, mod:wis)",
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 11,
+     "id": "fleet_step",
+     "name": "Fleet Step",
+     "description": "When you take a Bonus Action other than Step of the Wind, you can also use Step of the Wind right after it.",
+     "origin": "srd"
+    },
+    {
+     "level": 17,
+     "id": "quivering_palm",
+     "name": "Quivering Palm",
+     "description": "When you hit with an Unarmed Strike you can spend 4 Focus Points to start imperceptible vibrations (lasting days equal to your Monk level). With an action (or by forgoing an attack) you end them: Constitution save, 10d12 Force damage on a failure, half on a success. One creature at a time.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "devotion",
+   "classId": "paladin",
+   "name": "Oath of Devotion",
+   "description": "Ideals of justice and order: Sacred Weapon, devotion auras, and a holy nimbus.",
+   "features": [
+    {
+     "level": 3,
+     "id": "oath_of_devotion_spells",
+     "name": "Oath of Devotion Spells",
+     "description": "Always-prepared spells: level 3 Protection from Evil and Good, Shield of Faith; 5 Aid, Zone of Truth; 9 Beacon of Hope, Dispel Magic; 13 Freedom of Movement, Guardian of Faith; 17 Commune, Flame Strike.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "protection_from_evil_and_good",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "shield_of_faith",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "aid",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "zone_of_truth",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "beacon_of_hope",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=9"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "dispel_magic",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=9"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "freedom_of_movement",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=13"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "guardian_of_faith",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=13"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "commune",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=17"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "flame_strike",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:paladin>=17"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "sacred_weapon",
+     "name": "Sacred Weapon",
+     "description": "When you take the Attack action, expending a Channel Divinity use, you imbue a melee weapon for 10 minutes: add your Charisma modifier (minimum +1) to attack rolls, you can deal Radiant damage, and it sheds Bright Light (20 feet) and Dim Light (20 feet more).",
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "aura_of_devotion",
+     "name": "Aura of Devotion",
+     "description": "You and your allies can't be Charmed while in your Aura of Protection; a Charmed ally that enters it has the condition suspended while inside.",
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "smite_of_protection",
+     "name": "Smite of Protection",
+     "description": "Whenever you cast Divine Smite, you and your allies gain Half Cover while in your Aura of Protection until the start of your next turn.",
+     "origin": "srd"
+    },
+    {
+     "level": 20,
+     "id": "holy_nimbus",
+     "name": "Holy Nimbus",
+     "description": "Bonus Action: for 10 minutes the aura deals Radiant damage (Charisma + Proficiency) to enemies that start their turn in it, shines with sunlight, and gives you Advantage on saves against Fiends and Undead. Once per Long Rest (or by expending a level 5 slot).",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "hunter",
+   "classId": "ranger",
+   "name": "Hunter",
+   "description": "Protects nature and people: Hunter's Lore and Prey, and defensive tactics.",
+   "features": [
+    {
+     "level": 3,
+     "id": "hunters_lore",
+     "name": "Hunter's Lore",
+     "description": "While a creature is marked by your Hunter's Mark, you know whether it has any Immunities, Resistances, or Vulnerabilities, and what they are.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "hunters_prey",
+     "name": "Hunter's Prey",
+     "description": "Choose: Horde Breaker (once per turn, when you attack with a weapon you can make another attack with the same weapon against a different creature within 5 feet of the original target) or Colossus Slayer (+1d8 damage to a creature that is missing Hit Points, once per turn). You can change the choice after a Short or Long Rest.",
+     "choices": [
+      {
+       "id": "hunter_prey",
+       "label": "Hunter's Prey",
+       "count": 1,
+       "options": [
+        {
+         "id": "colossus_slayer",
+         "name": "Colossus Slayer"
+        },
+        {
+         "id": "horde_breaker",
+         "name": "Horde Breaker"
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 7,
+     "id": "defensive_tactics",
+     "name": "Defensive Tactics",
+     "description": "Choose: Multiattack Defense (after a creature hits you, its other attack rolls against you this turn have Disadvantage) or Escape the Horde (Opportunity Attacks against you have Disadvantage). You can change after a Short or Long Rest.",
+     "choices": [
+      {
+       "id": "hunter_defensive_tactics",
+       "label": "Defensive Tactics",
+       "count": 1,
+       "options": [
+        {
+         "id": "multiattack_defense",
+         "name": "Multiattack Defense"
+        },
+        {
+         "id": "escape_the_horde",
+         "name": "Escape the Horde"
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 11,
+     "id": "superior_hunters_prey",
+     "name": "Superior Hunter's Prey",
+     "description": "Once per turn when you deal damage to a creature marked by Hunter's Mark, you can also deal its extra damage to a different creature you can see within 30 feet of the first.",
+     "origin": "srd"
+    },
+    {
+     "level": 15,
+     "id": "superior_hunters_defense",
+     "name": "Superior Hunter's Defense",
+     "description": "When you take damage you can use your Reaction to gain Resistance to it and other damage of that type until the end of the current turn.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "thief",
+   "classId": "rogue",
+   "name": "Thief",
+   "description": "Treasure hunter and burglar: fast hands, climbing, magic items, and a double first turn.",
+   "features": [
+    {
+     "level": 3,
+     "id": "fast_hands",
+     "name": "Fast Hands",
+     "description": "As a Bonus Action: a Dexterity (Sleight of Hand) check to pick a lock, disarm a trap with Thieves' Tools, or pick a pocket; or take the Utilize or Magic action to use a magic item.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "second_story_work",
+     "name": "Second-Story Work",
+     "description": "You gain a Climb Speed equal to your Speed, and you use Dexterity instead of Strength to determine your jump distance.",
+     "origin": "srd"
+    },
+    {
+     "level": 9,
+     "id": "supreme_sneak",
+     "name": "Supreme Sneak",
+     "description": "New Cunning Strike option: Stealth Attack (1d6): if you're Invisible from the Hide action, the attack doesn't end that condition if you end the turn behind Three-Quarters or Total Cover.",
+     "origin": "srd"
+    },
+    {
+     "level": 13,
+     "id": "use_magic_device",
+     "name": "Use Magic Device",
+     "description": "Charges: when you use a magic item property that expends charges, roll 1d6; on a 6 no charge is expended. Scrolls: you can use any spell scroll with Intelligence (cantrips and level 1 without a check; higher needs an Intelligence (Arcana) check DC 10 + spell level, else it crumbles). You can attune to up to four magic items.",
+     "origin": "srd"
+    },
+    {
+     "level": 17,
+     "id": "thiefs_reflexes",
+     "name": "Thief's Reflexes",
+     "description": "You take two turns during the first round of any combat: the first at your normal Initiative and the second at your Initiative minus 10.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "draconic",
+   "classId": "sorcerer",
+   "name": "Draconic Sorcery",
+   "description": "Innate dragon magic: resilience, draconic spells, elemental affinity, wings, and a dragon ally.",
+   "features": [
+    {
+     "level": 3,
+     "id": "draconic_resilience",
+     "name": "Draconic Resilience",
+     "description": "Your Hit Point maximum increases by 3, and by 1 again whenever you gain a Sorcerer level. While not wearing armor your base AC is 10 + Dex + Cha.",
+     "effects": [
+      {
+       "op": "hpMaxBonus",
+       "value": 3
+      },
+      {
+       "op": "hpMaxPerLevel",
+       "value": 1,
+       "classId": "sorcerer"
+      },
+      {
+       "op": "acFormula",
+       "formula": "10 + mod:dex + mod:cha",
+       "shieldAllowed": true,
+       "when": "wearingArmor:none"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "draconic_spells",
+     "name": "Draconic Spells",
+     "description": "Always-prepared spells: level 3 Alter Self, Chromatic Orb, Command, Dragon's Breath; 5 Fear, Fly; 7 Arcane Eye, Charm Monster; 9 Legend Lore, Summon Dragon.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "alter_self",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "chromatic_orb",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "command",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "dragons_breath",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "fear",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "fly",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "arcane_eye",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=7"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "charm_monster",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=7"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "legend_lore",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=9"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "summon_dragon",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:sorcerer>=9"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "elemental_affinity",
+     "name": "Elemental Affinity",
+     "description": "Choose a draconic damage type (Acid, Cold, Lightning, Fire, or Poison): you gain Resistance to it and, when you cast a spell of that type, add your Charisma modifier to one damage roll.",
+     "choices": [
+      {
+       "id": "sorcerer_elemental_affinity",
+       "label": "Elemental Affinity",
+       "count": 1,
+       "options": [
+        {
+         "id": "acid",
+         "name": "Acid",
+         "effects": [
+          {
+           "op": "resistance",
+           "types": [
+            "acid"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "cold",
+         "name": "Cold",
+         "effects": [
+          {
+           "op": "resistance",
+           "types": [
+            "cold"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "lightning",
+         "name": "Lightning",
+         "effects": [
+          {
+           "op": "resistance",
+           "types": [
+            "lightning"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "fire",
+         "name": "Fire",
+         "effects": [
+          {
+           "op": "resistance",
+           "types": [
+            "fire"
+           ]
+          }
+         ]
+        },
+        {
+         "id": "poison",
+         "name": "Poison",
+         "effects": [
+          {
+           "op": "resistance",
+           "types": [
+            "poison"
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "dragon_wings",
+     "name": "Dragon Wings",
+     "description": "Bonus Action: dragon wings for 1 hour (or until dismissed) with a Fly Speed of 60 feet. Once per Long Rest, or by spending 3 Sorcery Points.",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 18,
+     "id": "dragon_companion",
+     "name": "Dragon Companion",
+     "description": "You can cast Summon Dragon without Material components and once without a slot per Long Rest; you can cast it without Concentration (duration 1 minute).",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "summon_dragon",
+       "mode": "alwaysPrepared",
+       "freeCast": {
+        "uses": 1,
+        "recharge": "long_rest"
+       }
+      }
+     ],
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "fiend",
+   "classId": "warlock",
+   "name": "Fiend Patron",
+   "description": "A pact with the Lower Planes: Temporary Hit Points, fiery spells, luck, and Hurl Through Hell.",
+   "features": [
+    {
+     "level": 3,
+     "id": "dark_ones_blessing",
+     "name": "Dark One's Blessing",
+     "description": "When you reduce an enemy to 0 Hit Points (or an enemy within 10 feet of you drops to 0) you gain Temporary Hit Points equal to your Charisma modifier + Warlock level (minimum 1).",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "fiend_spells",
+     "name": "Fiend Spells",
+     "description": "Always-prepared spells: level 3 Burning Hands, Command, Scorching Ray, Suggestion; 5 Fireball, Stinking Cloud; 7 Fire Shield, Wall of Fire; 9 Geas, Insect Plague.",
+     "effects": [
+      {
+       "op": "grantSpell",
+       "spell": "command",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "burning_hands",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "scorching_ray",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "suggestion",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=3"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "stinking_cloud",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "fireball",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=5"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "wall_of_fire",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=7"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "fire_shield",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=7"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "geas",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=9"
+      },
+      {
+       "op": "grantSpell",
+       "spell": "insect_plague",
+       "mode": "alwaysPrepared",
+       "when": "classLevel:warlock>=9"
+      }
+     ],
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "dark_ones_own_luck",
+     "name": "Dark One's Own Luck",
+     "description": "After seeing the roll of an ability check or saving throw you can add 1d10 to it (once per roll). Uses equal your Charisma modifier (minimum 1) per Long Rest.",
+     "usage": {
+      "uses": "max(1, mod:cha)",
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "fiendish_resilience",
+     "name": "Fiendish Resilience",
+     "description": "After a Short or Long Rest choose a damage type (except Force): you have Resistance to it until you choose a different one.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "hurl_through_hell",
+     "name": "Hurl Through Hell",
+     "description": "Once per turn when you hit with an attack roll you can send the target to the Lower Planes: Charisma save or, if it isn't a Fiend, it takes 8d10 Psychic damage and is Incapacitated until the end of your next turn. Once per Long Rest (or by expending a Pact Magic slot).",
+     "usage": {
+      "uses": 1,
+      "recharge": "long_rest"
+     },
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  },
+  {
+   "id": "evoker",
+   "classId": "wizard",
+   "name": "Evoker",
+   "description": "A specialist in explosive elemental effects: boosted and controlled Evocation spells.",
+   "features": [
+    {
+     "level": 3,
+     "id": "evocation_savant",
+     "name": "Evocation Savant",
+     "description": "Add two Wizard Evocation spells of level 2 or lower to your spellbook for free; whenever you gain access to a new slot level you add another.",
+     "origin": "srd"
+    },
+    {
+     "level": 3,
+     "id": "potent_cantrip",
+     "name": "Potent Cantrip",
+     "description": "When you miss with a cantrip or the target succeeds on its save, it still takes half the cantrip's damage (but suffers no additional effect).",
+     "origin": "srd"
+    },
+    {
+     "level": 6,
+     "id": "sculpt_spells",
+     "name": "Sculpt Spells",
+     "description": "When you cast an Evocation spell affecting creatures you can see, choose 1 + the spell's level of them: they automatically succeed on the save and take no damage even when it would be halved.",
+     "origin": "srd"
+    },
+    {
+     "level": 10,
+     "id": "empowered_evocation",
+     "name": "Empowered Evocation",
+     "description": "You add your Intelligence modifier to one damage roll of any Wizard Evocation spell.",
+     "origin": "srd"
+    },
+    {
+     "level": 14,
+     "id": "overchannel",
+     "name": "Overchannel",
+     "description": "When you cast a Wizard spell of level 1-5 that deals damage you can deal maximum damage; the first time with no ill effect, afterward 2d12 Necrotic damage per spell level (+1d12 for each further use) before a Long Rest.",
+     "origin": "srd"
+    }
+   ],
+   "origin": "srd"
+  }
+ ]
+}

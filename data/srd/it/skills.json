@@ -1,0 +1,167 @@
+{
+ "kind": "skills",
+ "entries": [
+  {
+   "id": "acrobatics",
+   "name": "Acrobazia",
+   "extra": {
+    "ability": "dex"
+   },
+   "description": "Restare in piedi in una situazione difficile o eseguire un'acrobazia.",
+   "origin": "srd"
+  },
+  {
+   "id": "animal_handling",
+   "name": "Addestrare animali",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Calmare o addestrare un animale, o ottenere che si comporti in un certo modo.",
+   "origin": "srd"
+  },
+  {
+   "id": "arcana",
+   "name": "Arcano",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Ricordare nozioni su incantesimi, oggetti magici e piani di esistenza.",
+   "origin": "srd"
+  },
+  {
+   "id": "athletics",
+   "name": "Atletica",
+   "extra": {
+    "ability": "str"
+   },
+   "description": "Saltare più lontano del normale, restare a galla in acque agitate o rompere qualcosa.",
+   "origin": "srd"
+  },
+  {
+   "id": "deception",
+   "name": "Inganno",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Dire una bugia convincente o travestirsi in modo credibile.",
+   "origin": "srd"
+  },
+  {
+   "id": "history",
+   "name": "Storia",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Ricordare nozioni su eventi storici, personaggi, nazioni e culture.",
+   "origin": "srd"
+  },
+  {
+   "id": "insight",
+   "name": "Intuizione",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Capire l'umore e le intenzioni di una persona.",
+   "origin": "srd"
+  },
+  {
+   "id": "intimidation",
+   "name": "Intimidire",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Ottenere ciò che vuoi incutendo timore o minacciando.",
+   "origin": "srd"
+  },
+  {
+   "id": "investigation",
+   "name": "Indagare",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Trovare informazioni nascoste nei libri o dedurre come funziona qualcosa.",
+   "origin": "srd"
+  },
+  {
+   "id": "medicine",
+   "name": "Medicina",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Diagnosticare una malattia o stabilire cosa ha ucciso una creatura morta da poco.",
+   "origin": "srd"
+  },
+  {
+   "id": "nature",
+   "name": "Natura",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Ricordare nozioni su terreni, piante, animali e clima.",
+   "origin": "srd"
+  },
+  {
+   "id": "perception",
+   "name": "Percezione",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Accorgersi di qualcosa che sfugge facilmente, usando insieme i sensi.",
+   "origin": "srd"
+  },
+  {
+   "id": "performance",
+   "name": "Intrattenere",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Recitare, raccontare una storia, suonare o ballare.",
+   "origin": "srd"
+  },
+  {
+   "id": "persuasion",
+   "name": "Persuasione",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Convincere qualcuno di qualcosa in modo onesto e cortese.",
+   "origin": "srd"
+  },
+  {
+   "id": "religion",
+   "name": "Religione",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Ricordare nozioni su divinità, riti religiosi e simboli sacri.",
+   "origin": "srd"
+  },
+  {
+   "id": "sleight_of_hand",
+   "name": "Rapidità di mano",
+   "extra": {
+    "ability": "dex"
+   },
+   "description": "Borseggiare, nascondere un oggetto che si tiene in mano o fare giochi di prestigio.",
+   "origin": "srd"
+  },
+  {
+   "id": "stealth",
+   "name": "Furtività",
+   "extra": {
+    "ability": "dex"
+   },
+   "description": "Passare inosservato muovendosi in silenzio e nascondendosi dietro qualcosa.",
+   "origin": "srd"
+  },
+  {
+   "id": "survival",
+   "name": "Sopravvivenza",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Seguire tracce, cercare cibo, trovare un sentiero o evitare i pericoli naturali.",
+   "origin": "srd"
+  }
+ ]
+}

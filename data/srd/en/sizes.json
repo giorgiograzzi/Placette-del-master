@@ -1,0 +1,59 @@
+{
+ "kind": "sizes",
+ "entries": [
+  {
+   "id": "tiny",
+   "name": "Tiny",
+   "extra": {
+    "spaceFeet": 2.5
+   },
+   "description": "Occupies a 2½ × 2½ ft space: four fit in one square.",
+   "origin": "srd"
+  },
+  {
+   "id": "small",
+   "name": "Small",
+   "extra": {
+    "spaceFeet": 5
+   },
+   "description": "Occupies one 5 × 5 ft square.",
+   "origin": "srd"
+  },
+  {
+   "id": "medium",
+   "name": "Medium",
+   "extra": {
+    "spaceFeet": 5
+   },
+   "description": "Occupies one 5 × 5 ft square.",
+   "origin": "srd"
+  },
+  {
+   "id": "large",
+   "name": "Large",
+   "extra": {
+    "spaceFeet": 10
+   },
+   "description": "Occupies a 10 × 10 ft space (2 × 2 squares).",
+   "origin": "srd"
+  },
+  {
+   "id": "huge",
+   "name": "Huge",
+   "extra": {
+    "spaceFeet": 15
+   },
+   "description": "Occupies a 15 × 15 ft space (3 × 3 squares).",
+   "origin": "srd"
+  },
+  {
+   "id": "gargantuan",
+   "name": "Gargantuan",
+   "extra": {
+    "spaceFeet": 20
+   },
+   "description": "Occupies a 20 × 20 ft space (4 × 4 squares).",
+   "origin": "srd"
+  }
+ ]
+}

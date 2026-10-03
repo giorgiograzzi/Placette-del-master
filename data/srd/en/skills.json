@@ -1,0 +1,167 @@
+{
+ "kind": "skills",
+ "entries": [
+  {
+   "id": "acrobatics",
+   "name": "Acrobatics",
+   "extra": {
+    "ability": "dex"
+   },
+   "description": "Keep your footing in a tricky spot or pull off an acrobatic stunt.",
+   "origin": "srd"
+  },
+  {
+   "id": "animal_handling",
+   "name": "Animal Handling",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Calm or train an animal, or get it to behave a certain way.",
+   "origin": "srd"
+  },
+  {
+   "id": "arcana",
+   "name": "Arcana",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Recall lore about spells, magic items, and the planes of existence.",
+   "origin": "srd"
+  },
+  {
+   "id": "athletics",
+   "name": "Athletics",
+   "extra": {
+    "ability": "str"
+   },
+   "description": "Jump farther than usual, stay afloat in rough water, or break something.",
+   "origin": "srd"
+  },
+  {
+   "id": "deception",
+   "name": "Deception",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Tell a convincing lie or wear a believable disguise.",
+   "origin": "srd"
+  },
+  {
+   "id": "history",
+   "name": "History",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Recall lore about historical events, people, nations, and cultures.",
+   "origin": "srd"
+  },
+  {
+   "id": "insight",
+   "name": "Insight",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Read a person's mood and intentions.",
+   "origin": "srd"
+  },
+  {
+   "id": "intimidation",
+   "name": "Intimidation",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Get what you want by awing or threatening someone.",
+   "origin": "srd"
+  },
+  {
+   "id": "investigation",
+   "name": "Investigation",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Dig up obscure information in books or work out how something functions.",
+   "origin": "srd"
+  },
+  {
+   "id": "medicine",
+   "name": "Medicine",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Diagnose an illness or work out what killed someone recently dead.",
+   "origin": "srd"
+  },
+  {
+   "id": "nature",
+   "name": "Nature",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Recall lore about terrain, plants, animals, and weather.",
+   "origin": "srd"
+  },
+  {
+   "id": "perception",
+   "name": "Perception",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Notice something easy to miss by using your senses together.",
+   "origin": "srd"
+  },
+  {
+   "id": "performance",
+   "name": "Performance",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Act, tell a story, play music, or dance.",
+   "origin": "srd"
+  },
+  {
+   "id": "persuasion",
+   "name": "Persuasion",
+   "extra": {
+    "ability": "cha"
+   },
+   "description": "Convince someone of something honestly and graciously.",
+   "origin": "srd"
+  },
+  {
+   "id": "religion",
+   "name": "Religion",
+   "extra": {
+    "ability": "int"
+   },
+   "description": "Recall lore about gods, religious rites, and holy symbols.",
+   "origin": "srd"
+  },
+  {
+   "id": "sleight_of_hand",
+   "name": "Sleight of Hand",
+   "extra": {
+    "ability": "dex"
+   },
+   "description": "Pick a pocket, hide a handheld object, or perform sleight of hand.",
+   "origin": "srd"
+  },
+  {
+   "id": "stealth",
+   "name": "Stealth",
+   "extra": {
+    "ability": "dex"
+   },
+   "description": "Avoid notice by moving quietly and hiding behind things.",
+   "origin": "srd"
+  },
+  {
+   "id": "survival",
+   "name": "Survival",
+   "extra": {
+    "ability": "wis"
+   },
+   "description": "Follow tracks, forage, find a trail, or avoid natural hazards.",
+   "origin": "srd"
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+# App dei personaggi SRD: nginx con i file statici dell'app.
+# Avvio:  docker compose up -d --build        (la porta si cambia in .env, vedi .env.example)
+services:
+  srd-personaggi:
+    build:
+      context: .
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-}
+    image: srd-personaggi:latest
+    container_name: srd-personaggi
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8098}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
